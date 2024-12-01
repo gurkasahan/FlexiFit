@@ -1,10 +1,10 @@
 ﻿// FlexiFit.Entities/Member.cs
-using FlexiFit.Models;
+//using FlexiFit.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace FlexiFit.Entities.Members.cs
+namespace FlexiFit.Entities.Models
 {
     /// <summary>
     /// Author: Alfred, Gurkaranjit, Kamaldeep
