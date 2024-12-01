@@ -1,17 +1,16 @@
 ﻿@model IEnumerable<FlexiFit.Entities.Models.Class>
 
 @{
-    ViewData["Title"] = "Book Classes";
+    ViewData["Title"] = "Class Schedule";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Book Classes</h1>
+<h1>Class Schedule</h1>
 
 <table class="table">
     <thead>
         <tr>
             <th>Class Name</th>
-            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -19,9 +18,6 @@
         {
             <tr>
                 <td>@cls.ClassName</td>
-                <td>
-                    <a asp-controller="Bookings" asp-action="Create" class="btn">Book Now</a>
-                </td>
             </tr>
         }
     </tbody>

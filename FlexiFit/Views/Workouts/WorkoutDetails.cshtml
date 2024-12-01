@@ -1,27 +1,9 @@
-﻿@model List<FlexiFit.Entities.Models.Workout>
+﻿@model IEnumerable<FlexiFit.Entities.Models.Workout>
 
-@{
-    ViewData["Title"] = "@Model.FirstOrDefault()?.MuscleGroup Workouts";
-}
-
-<h2>@Model.FirstOrDefault()?.MuscleGroup Workouts</h2>
-
-@if (!Model.Any())
-{
-    <p>No workouts found for this muscle group.</p>
-}
-else
-{
+<h1>Workouts for Muscle Group</h1>
+<ul>
     @foreach (var workout in Model)
     {
-        <div class="workout mb-4">
-            <h3>@workout.ExerciseName</h3>
-            <p>@workout.Description</p>
-            <p><strong>Repetitions:</strong> @workout.Repetitions</p>
-            @if (!string.IsNullOrEmpty(workout.ImageUrl))
-            {
-                <img src="@Url.Content(workout.ImageUrl)" alt="@workout.ExerciseName" class="img-fluid" />
-            }
-        </div>
+        <li>@workout.ExerciseName: @workout.Repetitions</li>
     }
-}
+</ul>
