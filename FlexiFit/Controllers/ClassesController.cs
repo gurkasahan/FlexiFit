@@ -1,28 +1,22 @@
-﻿// FlexiFit/Controllers/ClassesController.cs
-using Microsoft.AspNetCore.Mvc;
-using FlexiFit.Entities;
-using FlexiFit.Services;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 using FlexiFit.Entities.Models;
 using FlexiFit.Services.Repositories;
+using System.Linq;
 
 namespace FlexiFit.Controllers
 {
-    /// <summary>
-    /// Author: Alfred, Gurkaranjit, Kamaldeep
-    /// Manages class-related operations.
-    /// </summary>
     [Route("[controller]/[action]")]
     public class ClassesController : Controller
     {
         private readonly IRepository<Class> _classRepository;
+        private readonly IRepository<Booking> _bookingRepository;
 
-        public ClassesController(IRepository<Class> classRepository)
+        public ClassesController(IRepository<Class> classRepository, IRepository<Booking> bookingRepository)
         {
             _classRepository = classRepository;
+            _bookingRepository = bookingRepository;
         }
 
-        // GET: Classes/List
         [HttpGet]
         public IActionResult List()
         {
@@ -30,7 +24,6 @@ namespace FlexiFit.Controllers
             return View(classes);
         }
 
-        // GET: Classes/Details/{id}
         [HttpGet("{id}")]
         public IActionResult Details(int id)
         {
@@ -42,6 +35,24 @@ namespace FlexiFit.Controllers
             return View(cls);
         }
 
-        // Additional actions like Create, Edit, Delete can be added if needed
+        [HttpGet]
+        public IActionResult BookClasses()
+        {
+            ViewBag.Classes = _classRepository.GetAll().ToList();
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult BookClasses(Booking booking)
+        {
+            if (ModelState.IsValid)
+            {
+                _bookingRepository.Add(booking);
+                return RedirectToAction("List");
+            }
+
+            ViewBag.Classes = _classRepository.GetAll().ToList();
+            return View(booking);
+        }
     }
 }
