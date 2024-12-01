@@ -1,6 +1,21 @@
 ﻿@model FlexiFit.Entities.Models.Member
 
-<h1>Member Information</h1>
-<p>@Model.FirstName @Model.LastName</p>
-<p>Email: @Model.Email</p>
-<p>Membership Tier: @Model.MembershipTier</p>
+@{
+    ViewData["Title"] = "Member Information";
+}
+
+<h2>Member Information</h2>
+
+<div>
+    <p><strong>First Name:</strong> @Model.FirstName</p>
+    <p><strong>Last Name:</strong> @Model.LastName</p>
+    <p><strong>Email:</strong> @Model.Email</p>
+    <p><strong>Phone Number:</strong> @Model.PhoneNumber</p>
+    <p><strong>Membership Tier:</strong> @Model.MembershipTier</p>
+    <p><strong>Address:</strong> @Model.Address</p>
+    <p><strong>Billing Name:</strong> @Model.BillingName</p>
+    <p><strong>Card Number:</strong> @Model.CardNumber</p>
+    <p><strong>Status:</strong> @(Model.IsActive ? "Active" : "Inactive")</p>
+</div>
+
+<a asp-action="ManageMembership" asp-route-id="@Model.MemberId" class="btn btn-primary">Manage Membership</a>

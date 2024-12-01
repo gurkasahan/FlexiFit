@@ -1,17 +1,16 @@
-﻿@model IEnumerable<string>
+﻿@model List<string>
 
 @{
-    ViewData["Title"] = "Find Exercise";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Find an Exercise";
 }
 
-<h1>Muscle Groups</h1>
+<h2>Find an Exercise</h2>
 
-<ul>
-    @foreach (var group in Model)
+<ul class="list-group">
+    @foreach (var muscleGroup in Model)
     {
-        <li>
-            <a asp-action="WorkoutDetails" asp-route-muscleGroup="@group">@group</a>
+        <li class="list-group-item">
+            <a asp-action="WorkoutDetails" asp-route-muscleGroup="@muscleGroup">@muscleGroup</a>
         </li>
     }
 </ul>

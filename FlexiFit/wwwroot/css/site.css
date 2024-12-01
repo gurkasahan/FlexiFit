@@ -1,92 +1,39 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-h1, h2 {
-    color: #0056b3;
+h2 {
+    color: #343a40;
+    margin-top: 20px;
 }
-
-header {
-    background: #0056b3;
-    color: white;
-    padding: 1rem 0;
-    text-align: center;
-}
-
-nav {
-    text-align: center;
-    margin: 10px 0;
-}
-
-    nav a {
-        margin: 0 10px;
-        text-decoration: none;
-        color: #0056b3;
-        font-weight: bold;
-    }
-
-        nav a:hover {
-            color: #003d82;
-        }
-
-.container {
-    width: 80%;
-    margin: 20px auto;
-    padding: 20px;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-}
-
-    .table th, .table td {
-        border: 1px solid #ddd;
-        padding: 10px;
-        text-align: left;
-    }
-
-    .table th {
-        background: #0056b3;
-        color: white;
-    }
-
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    color: white;
-    background: #0056b3;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    text-align: center;
-}
-
-    .btn:hover {
-        background: #003d82;
-    }
 
 .form-group {
     margin-bottom: 15px;
 }
 
-    .form-group label {
-        font-weight: bold;
+.workout {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+    .workout img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
     }
 
-.form-control {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+.navbar-brand {
+    font-weight: bold;
 }
