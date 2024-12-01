@@ -4,9 +4,10 @@ using FlexiFit.Entities;
 using FlexiFit.Services;
 using System;
 using System.Linq;
-using FlexiFit.Entities.Members.cs;
 using FlexiFit.Entities.Models;
 using FlexiFit.Services.Repositories;
+using FlexiFit.Entities.ValidationAttributes;
+
 
 namespace FlexiFit.Controllers
 {
@@ -58,7 +59,7 @@ namespace FlexiFit.Controllers
         [HttpGet("{id}")]
         public IActionResult MemberInfo(int id)
         {
-            var member = _memberRepository.Get(id);
+            var member = _memberRepository.GetById(id);
             if (member == null)
             {
                 return NotFound();
@@ -70,7 +71,7 @@ namespace FlexiFit.Controllers
         [HttpGet("{id}")]
         public IActionResult ManageMembership(int id)
         {
-            var member = _memberRepository.Get(id);
+            var member = _memberRepository.GetById(id);
             if (member == null)
             {
                 return NotFound();
@@ -83,7 +84,7 @@ namespace FlexiFit.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult ManageMembership(int id, bool isActive)
         {
-            var member = _memberRepository.Get(id);
+            var member = _memberRepository.GetById(id);
             if (member == null)
             {
                 return NotFound();

@@ -58,7 +58,7 @@ namespace FlexiFit.Controllers
         [HttpGet("{id}")]
         public IActionResult Details(int id)
         {
-            var workout = _workoutRepository.Get(id);
+            var workout = _workoutRepository.GetById(id);
             if (workout == null)
             {
                 return NotFound();

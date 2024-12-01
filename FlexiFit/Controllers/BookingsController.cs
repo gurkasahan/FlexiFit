@@ -72,7 +72,7 @@ namespace FlexiFit.Controllers
         [HttpGet("{id}")]
         public IActionResult Delete(int id)
         {
-            var booking = _bookingRepository.Get(id);
+            var booking = _bookingRepository.GetById(id);
             if (booking == null)
             {
                 return NotFound();
@@ -86,7 +86,7 @@ namespace FlexiFit.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            var booking = _bookingRepository.Get(id);
+            var booking = _bookingRepository.GetById(id);
             if (booking == null)
             {
                 return NotFound();

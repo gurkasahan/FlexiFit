@@ -1,8 +1,12 @@
 ﻿// FlexiFit.Entities/Member.cs
 //using FlexiFit.Models;
+using FlexiFit.Entities.ValidationAttributes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using DataAnnotations = System.ComponentModel.DataAnnotations;
+using ValidationAttributes = FlexiFit.Entities.ValidationAttributes;
+
 
 namespace FlexiFit.Entities.Models
 {
@@ -46,8 +50,9 @@ namespace FlexiFit.Entities.Models
         public string BillingName { get; set; }
 
         [Required]
-        [CreditCard]
+        [System.ComponentModel.DataAnnotations.CreditCard]
         public string CardNumber { get; set; }
+
 
         public bool IsActive { get; set; } = true;
 

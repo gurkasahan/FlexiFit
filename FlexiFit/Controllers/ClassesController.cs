@@ -34,7 +34,7 @@ namespace FlexiFit.Controllers
         [HttpGet("{id}")]
         public IActionResult Details(int id)
         {
-            var cls = _classRepository.Get(id);
+            var cls = _classRepository.GetById(id);
             if (cls == null)
             {
                 return NotFound();

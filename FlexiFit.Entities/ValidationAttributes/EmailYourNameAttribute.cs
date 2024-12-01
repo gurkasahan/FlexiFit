@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// FlexiFit.Entities/ValidationAttributes/EmailYourNameAttribute.cs
+using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FlexiFit.Entities.ValidationAttributes
 {
+    /// <summary>
+    /// Custom validation attribute to ensure the email ends with a specific domain.
+    /// </summary>
     public class EmailYourNameAttribute : ValidationAttribute
     {
         private readonly string _domainName;
@@ -18,11 +18,19 @@ namespace FlexiFit.Entities.ValidationAttributes
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            if (value is string email && email.EndsWith("@" + _domainName))
+            string email = value as string;
+            if (!string.IsNullOrEmpty(email))
             {
-                return ValidationResult.Success;
+                if (email.EndsWith("@" + _domainName, StringComparison.OrdinalIgnoreCase))
+                {
+                    return ValidationResult.Success;
+                }
+                else
+                {
+                    return new ValidationResult($"Email domain must be '{_domainName}'.");
+                }
             }
-            return new ValidationResult($"Email domain must be '{_domainName}'.");
+            return new ValidationResult("Invalid email address.");
         }
     }
 }
