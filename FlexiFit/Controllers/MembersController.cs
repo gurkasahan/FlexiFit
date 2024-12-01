@@ -7,6 +7,7 @@ using System.Linq;
 using FlexiFit.Entities.Models;
 using FlexiFit.Services.Repositories;
 using FlexiFit.Entities.ValidationAttributes;
+using FlexiFit.Models;
 
 
 namespace FlexiFit.Controllers
@@ -39,7 +40,16 @@ namespace FlexiFit.Controllers
         [HttpGet]
         public IActionResult SignUp()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (if logging is set up)
+                // Return an error view or message
+                return View("Error", new ErrorViewModel { Message = ex.Message });
+            }
         }
 
         // POST: Members/SignUp
@@ -47,36 +57,68 @@ namespace FlexiFit.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult SignUp(Member member)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _memberRepository.Add(member);
-                return RedirectToAction("MemberInfo", new { id = member.MemberId });
+                if (ModelState.IsValid)
+                {
+                    _memberRepository.Add(member);
+                    return RedirectToAction("MemberInfo", new { id = member.MemberId });
+                }
+                else
+                {
+                    // If validation fails, return the view with validation messages
+                    return View(member);
+                }
             }
-            return View(member);
+            catch (Exception ex)
+            {
+                // Log the exception
+                ModelState.AddModelError("", "An error occurred while processing your request. Please try again.");
+
+
+                // Return the view with the current member model and validation messages
+                return View(member);
+            }
         }
 
         // GET: Members/MemberInfo/{id}
         [HttpGet("{id}")]
         public IActionResult MemberInfo(int id)
         {
-            var member = _memberRepository.GetById(id);
-            if (member == null)
+            try
             {
-                return NotFound();
+                var member = _memberRepository.GetById(id);
+                if (member == null)
+                {
+                    return NotFound();
+                }
+                return View(member);
             }
-            return View(member);
+            catch (Exception ex)
+            {
+                // Log the exception
+                return View("Error", new ErrorViewModel { Message = ex.Message });
+            }
         }
 
         // GET: Members/ManageMembership/{id}
         [HttpGet("{id}")]
         public IActionResult ManageMembership(int id)
         {
-            var member = _memberRepository.GetById(id);
-            if (member == null)
+            try
             {
-                return NotFound();
+                var member = _memberRepository.GetById(id);
+                if (member == null)
+                {
+                    return NotFound();
+                }
+                return View(member);
             }
-            return View(member);
+            catch (Exception ex)
+            {
+                // Log the exception
+                return View("Error", new ErrorViewModel { Message = ex.Message });
+            }
         }
 
         // POST: Members/ManageMembership/{id}
@@ -84,15 +126,24 @@ namespace FlexiFit.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult ManageMembership(int id, bool isActive)
         {
-            var member = _memberRepository.GetById(id);
-            if (member == null)
+            try
             {
-                return NotFound();
-            }
+                var member = _memberRepository.GetById(id);
+                if (member == null)
+                {
+                    return NotFound();
+                }
 
-            member.IsActive = isActive;
-            _memberRepository.Update(member);
-            return RedirectToAction("MemberInfo", new { id = member.MemberId });
+                member.IsActive = isActive;
+                _memberRepository.Update(member);
+                return RedirectToAction("MemberInfo", new { id = member.MemberId });
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                ModelState.AddModelError("", "An error occurred while updating your membership status.");
+                return View();
+            }
         }
 
         // GET: Members/FindExercise
