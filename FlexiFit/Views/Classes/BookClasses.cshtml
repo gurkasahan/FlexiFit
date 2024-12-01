@@ -1,4 +1,9 @@
-﻿@page
-@model FlexiFit.Views.Classes.BookClassesModel
-@{
-}
+﻿@model IEnumerable<FlexiFit.Entities.Class>
+
+<h1>Book Classes</h1>
+<ul>
+    @foreach (var cls in Model)
+    {
+        <li>@cls.ClassName</li>
+    }
+</ul>

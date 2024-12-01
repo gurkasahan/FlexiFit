@@ -1,4 +1,12 @@
-﻿@page
-@model FlexiFit.Views.Members.ManageMembershipModel
-@{
-}
+﻿@model FlexiFit.Entities.Member
+
+<h1>Manage Membership</h1>
+<form asp-action="ManageMembership" method="post">
+    <input type="hidden" asp-for="MemberId" />
+    <label>Membership Status</label>
+    <select asp-for="IsActive">
+        <option value="true">Active</option>
+        <option value="false">Inactive</option>
+    </select>
+    <button type="submit">Update</button>
+</form>

@@ -1,4 +1,11 @@
-﻿@page
-@model FlexiFit.Views.Workouts.FindExerciseModel
-@{
-}
+﻿@model IEnumerable<string>
+
+<h1>Muscle Groups</h1>
+<ul>
+    @foreach (var group in Model)
+    {
+        <li>
+            <a asp-action="WorkoutDetails" asp-route-muscleGroup="@group">@group</a>
+        </li>
+    }
+</ul>

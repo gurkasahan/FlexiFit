@@ -1,4 +1,9 @@
-﻿@page
-@model FlexiFit.Views.Workouts.WorkoutDetailsModel
-@{
-}
+﻿@model IEnumerable<FlexiFit.Entities.Workout>
+
+<h1>Workouts for Muscle Group</h1>
+<ul>
+    @foreach (var workout in Model)
+    {
+        <li>@workout.ExerciseName: @workout.Repetitions</li>
+    }
+</ul>

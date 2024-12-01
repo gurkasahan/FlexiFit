@@ -1,4 +1,6 @@
-﻿@page
-@model FlexiFit.Views.Members.MemberInfoModel
-@{
-}
+﻿@model FlexiFit.Entities.Member
+
+<h1>Member Information</h1>
+<p>@Model.FirstName @Model.LastName</p>
+<p>Email: @Model.Email</p>
+<p>Membership Tier: @Model.MembershipTier</p>
