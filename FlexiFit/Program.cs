@@ -1,4 +1,5 @@
 using FlexiFit.Services;
+using FlexiFit.Services.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 // Configure DbContext with dependency injection for SQLite
-builder.Services.AddDbContext<FlexiFitDbContext>(options =>
+builder.Services.AddDbContext<FlexiFitDBContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Register repository pattern
