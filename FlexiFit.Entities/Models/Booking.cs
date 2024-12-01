@@ -1,9 +1,9 @@
 ﻿// FlexiFit.Entities/Booking.cs
-using FlexiFit.Entities.Members.cs;
+//using FlexiFit.Entities.Members.cs;//
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace FlexiFit.Entities
+namespace FlexiFit.Entities.Models
 {
     /// <summary>
     /// Author: Alfred, Gurkaranjit, Kamaldeep
