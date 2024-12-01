@@ -13,6 +13,7 @@ namespace FlexiFit.Entities.Models
         public int WorkoutId { get; set; }
 
         [Required]
+        [MaxLength(50)]
         public string MuscleGroup { get; set; } // E.g., Chest, Biceps
 
         [Required]
@@ -20,6 +21,7 @@ namespace FlexiFit.Entities.Models
 
         public string Description { get; set; }
 
+        [RegularExpression(@"^\d+x\d+$", ErrorMessage = "Repetitions format should be 'sets x reps' (e.g., 3x10).")]
         public string Repetitions { get; set; }
 
         public string ImageUrl { get; set; }
