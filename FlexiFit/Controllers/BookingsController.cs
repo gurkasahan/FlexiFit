@@ -5,6 +5,7 @@ using FlexiFit.Services;
 using System;
 using System.Linq;
 using FlexiFit.Entities.Models;
+using FlexiFit.Services.Repositories;
 
 namespace FlexiFit.Controllers
 {

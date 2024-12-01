@@ -6,6 +6,7 @@ using System;
 using System.Linq;
 using FlexiFit.Entities.Members.cs;
 using FlexiFit.Entities.Models;
+using FlexiFit.Services.Repositories;
 
 namespace FlexiFit.Controllers
 {
