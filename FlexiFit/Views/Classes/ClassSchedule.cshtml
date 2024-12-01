@@ -1,9 +1,24 @@
 ﻿@model IEnumerable<FlexiFit.Entities.Models.Class>
 
+@{
+    ViewData["Title"] = "Class Schedule";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
 <h1>Class Schedule</h1>
-<ul>
-    @foreach (var cls in Model)
-    {
-        <li>@cls.ClassName</li>
-    }
-</ul>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Class Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cls in Model)
+        {
+            <tr>
+                <td>@cls.ClassName</td>
+            </tr>
+        }
+    </tbody>
+</table>
