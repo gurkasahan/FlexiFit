@@ -5,6 +5,10 @@ VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlexiFit", "FlexiFit\FlexiFit.csproj", "{6F0180EE-4C16-49C6-BD55-F152F9606CA3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlexiFit.Entities", "FlexiFit.Entities\FlexiFit.Entities.csproj", "{A005C860-7E8F-40C4-B00F-3B83C53068D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlexiFit.Services", "FlexiFit.Services\FlexiFit.Services.csproj", "{82E633E8-A683-4812-8131-EC3DBC0447C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{6F0180EE-4C16-49C6-BD55-F152F9606CA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F0180EE-4C16-49C6-BD55-F152F9606CA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F0180EE-4C16-49C6-BD55-F152F9606CA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A005C860-7E8F-40C4-B00F-3B83C53068D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A005C860-7E8F-40C4-B00F-3B83C53068D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A005C860-7E8F-40C4-B00F-3B83C53068D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A005C860-7E8F-40C4-B00F-3B83C53068D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82E633E8-A683-4812-8131-EC3DBC0447C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82E633E8-A683-4812-8131-EC3DBC0447C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82E633E8-A683-4812-8131-EC3DBC0447C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82E633E8-A683-4812-8131-EC3DBC0447C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
