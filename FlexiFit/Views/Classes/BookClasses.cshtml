@@ -1,28 +1,40 @@
-﻿@model IEnumerable<FlexiFit.Entities.Models.Class>
+﻿@model FlexiFit.Entities.Models.Booking
 
 @{
-    ViewData["Title"] = "Book Classes";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Book a Class";
 }
 
-<h1>Book Classes</h1>
+<h2>Book a Class</h2>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Class Name</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var cls in Model)
-        {
-            <tr>
-                <td>@cls.ClassName</td>
-                <td>
-                    <a asp-controller="Bookings" asp-action="Create" class="btn">Book Now</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+<form asp-action="BookClasses" method="post">
+    <input type="hidden" asp-for="MemberId" value="@ViewBag.MemberId" />
+    <div class="form-group">
+        <label asp-for="ClassId">Class</label>
+        <select asp-for="ClassId" class="form-control">
+            @foreach (var cls in ViewBag.Classes)
+            {
+                <option value="@cls.ClassId">@cls.ClassName</option>
+            }
+        </select>
+        <span asp-validation-for="ClassId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="BookingDate">Date</label>
+        <input asp-for="BookingDate" class="form-control" type="date" />
+        <span asp-validation-for="BookingDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="BookingTime">Time</label>
+        <input asp-for="BookingTime" class="form-control" type="time" />
+        <span asp-validation-for="BookingTime" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Book Class</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

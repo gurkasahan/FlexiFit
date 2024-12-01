@@ -1,12 +1,19 @@
 ﻿@model FlexiFit.Entities.Models.Member
 
-<h1>Manage Membership</h1>
+@{
+    ViewData["Title"] = "Manage Membership";
+}
+
+<h2>Manage Membership</h2>
+
 <form asp-action="ManageMembership" method="post">
     <input type="hidden" asp-for="MemberId" />
-    <label>Membership Status</label>
-    <select asp-for="IsActive">
-        <option value="true">Active</option>
-        <option value="false">Inactive</option>
-    </select>
-    <button type="submit">Update</button>
+    <div class="form-group">
+        <label asp-for="IsActive" class="form-label">Status</label>
+        <select asp-for="IsActive" class="form-control">
+            <option value="true" selected="@Model.IsActive">Active</option>
+            <option value="false" selected="@(Model.IsActive == false)">Inactive</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Status</button>
 </form>
