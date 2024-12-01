@@ -1,9 +1,9 @@
 ﻿// FlexiFit.Entities/Class.cs
-using FlexiFit.Models;
+//using FlexiFit.Models;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace FlexiFit.Entities
+namespace FlexiFit.Entities.Models
 {
     /// <summary>
     /// Author: Alfred, Gurkaranjit, Kamaldeep
