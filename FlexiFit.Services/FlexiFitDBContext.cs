@@ -14,6 +14,19 @@ namespace FlexiFit.Services
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Configure relationships
+            modelBuilder.Entity<Booking>()
+                .HasOne(b => b.Member)
+                .WithMany(m => m.Bookings)
+                .HasForeignKey(b => b.MemberId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Booking>()
+                .HasOne(b => b.Class)
+                .WithMany(c => c.Bookings)
+                .HasForeignKey(b => b.ClassId)
+                .OnDelete(DeleteBehavior.Cascade);
+
             // Seed Data
             modelBuilder.Entity<Class>().HasData(
                 new Class { ClassId = 1, ClassName = "Yoga" },
