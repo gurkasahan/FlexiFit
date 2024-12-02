@@ -10,7 +10,7 @@ namespace FlexiFit.Controllers
 {
     /// <summary>
     /// Author: Alfred, Gurkaranjit, Kamaldeep
-    /// Manages booking-related operations.
+    /// Manages booking-related operations. 
     /// </summary>
     [Route("[controller]/[action]")]
     public class BookingsController : Controller
