@@ -1,16 +1,43 @@
-﻿@model List<string>
+﻿<div class="find-exercise-page">
+    <div class="find-exercise-container">
+        <h1 class="find-exercise-title">Find an Exercise</h1>
+        <div class="exercise-grid">
+            @foreach (var muscleGroup in Model)
+            {
+                <div class="muscle-card">
+                    <div class="muscle-icon">
+                        @if (muscleGroup == "Chest")
+                        {
+                            <i class="fas fa-dumbbell"></i>
+                        }
+                        else if (muscleGroup == "Triceps")
+                        {
+                            <i class="fas fa-arm-flex"></i>
+                        }
+                        else if (muscleGroup == "Biceps")
+                        {
+                            <i class="fas fa-bolt"></i>
+                        }
+                        else if (muscleGroup == "Back")
+                        {
+                            <i class="fas fa-anchor"></i>
+                        }
+                        else if (muscleGroup == "Legs")
+                        {
+                            <i class="fas fa-running"></i>
+                        }
+                        else if (muscleGroup == "Abs")
+                        {
+                            <i class="fas fa-apple-alt"></i>
+                        }
+                    </div>
+                    <h3 class="muscle-name">@muscleGroup</h3>
+                    <a asp-action="WorkoutDetails" asp-route-muscleGroup="@muscleGroup" class="btn-muscle">View Workouts</a>
+                </div>
 
-@{
-    ViewData["Title"] = "Find an Exercise";
-}
+            }
+        </div>
+    </div>
+</div>
 
-<h2>Find an Exercise</h2>
 
-<ul class="list-group">
-    @foreach (var muscleGroup in Model)
-    {
-        <li class="list-group-item">
-            <a asp-action="WorkoutDetails" asp-route-muscleGroup="@muscleGroup">@muscleGroup</a>
-        </li>
-    }
-</ul>

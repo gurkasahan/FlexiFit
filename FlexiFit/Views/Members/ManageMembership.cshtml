@@ -4,16 +4,21 @@
     ViewData["Title"] = "Manage Membership";
 }
 
-<h2>Manage Membership</h2>
+<div class="page-background">
+    <div class="card-container">
+        <h1 class="card-title">Manage Membership</h1>
+        <p class="card-description">Update your membership status below.</p>
 
-<form asp-action="ManageMembership" method="post">
-    <input type="hidden" asp-for="MemberId" />
-    <div class="form-group">
-        <label asp-for="IsActive" class="form-label">Status</label>
-        <select asp-for="IsActive" class="form-control">
-            <option value="true" selected="@Model.IsActive">Active</option>
-            <option value="false" selected="@(Model.IsActive == false)">Inactive</option>
-        </select>
+        <form asp-action="ManageMembership" method="post" class="card-form">
+            <input type="hidden" asp-for="MemberId" />
+            <div class="form-group">
+                <label asp-for="IsActive" class="form-label">Status</label>
+                <select asp-for="IsActive" class="form-control">
+                    <option value="true" selected="@Model.IsActive">Active</option>
+                    <option value="false" selected="@(Model.IsActive == false)">Inactive</option>
+                </select>
+            </div>
+            <button type="submit" class="card-button">Update Status</button>
+        </form>
     </div>
-    <button type="submit" class="btn btn-primary">Update Status</button>
-</form>
+</div>

@@ -4,18 +4,21 @@
     ViewData["Title"] = "Member Information";
 }
 
-<h2>Member Information</h2>
-
-<div>
-    <p><strong>First Name:</strong> @Model.FirstName</p>
-    <p><strong>Last Name:</strong> @Model.LastName</p>
-    <p><strong>Email:</strong> @Model.Email</p>
-    <p><strong>Phone Number:</strong> @Model.PhoneNumber</p>
-    <p><strong>Membership Tier:</strong> @Model.MembershipTier</p>
-    <p><strong>Address:</strong> @Model.Address</p>
-    <p><strong>Billing Name:</strong> @Model.BillingName</p>
-    <p><strong>Card Number:</strong> @Model.CardNumber</p>
-    <p><strong>Status:</strong> @(Model.IsActive ? "Active" : "Inactive")</p>
+<div class="page-background">
+    <div class="card-container">
+        <h1 class="card-title">Member Information</h1>
+        <div class="card-detail">
+            <p><span>First Name:</span> @Model.FirstName</p>
+            <p><span>Last Name:</span> @Model.LastName</p>
+            <p><span>Email:</span> @Model.Email</p>
+            <p><span>Phone Number:</span> @Model.PhoneNumber</p>
+            <p><span>Membership Tier:</span> @Model.MembershipTier</p>
+            <p><span>Address:</span> @Model.Address</p>
+            <p><span>Billing Name:</span> @Model.BillingName</p>
+            <p><span>Card Number:</span> @Model.CardNumber</p>
+            <p><span>Status:</span> @(Model.IsActive ? "Active" : "Inactive")</p>
+        </div>
+        <a asp-action="ManageMembership" asp-route-id="@Model.MemberId" class="card-button">Manage Membership</a>
+    </div>
 </div>
 
-<a asp-action="ManageMembership" asp-route-id="@Model.MemberId" class="btn btn-primary">Manage Membership</a>
