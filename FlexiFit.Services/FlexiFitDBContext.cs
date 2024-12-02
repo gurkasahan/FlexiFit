@@ -44,7 +44,7 @@ namespace FlexiFit.Services
                     ExerciseName = "Bench Press",
                     Description = "Barbell bench press",
                     Repetitions = "5 reps x 5 sets",
-                    ImageUrl = "/images/workouts/bench_press.jpg"
+                    ImageUrl = "/images/workouts/bench_press.gif"
                 },
                 new Workout
                 {
@@ -53,7 +53,7 @@ namespace FlexiFit.Services
                     ExerciseName = "Incline Dumbbell Press",
                     Description = "Incline bench dumbbell press",
                     Repetitions = "3-4 sets x 6-8 reps",
-                    ImageUrl = "/images/workouts/incline_dumbbell_press.jpg"
+                    ImageUrl = "/images/workouts/incline_dumbbell_press.gif"
                 },
                 new Workout
                 {
@@ -62,7 +62,7 @@ namespace FlexiFit.Services
                     ExerciseName = "Cable Flys",
                     Description = "Cable chest flys",
                     Repetitions = "3 sets x 8-10 reps",
-                    ImageUrl = "/images/workouts/cable_flys.jpg"
+                    ImageUrl = "/images/workouts/cable_flys.gif"
                 },
                 new Workout
                 {
@@ -71,7 +71,7 @@ namespace FlexiFit.Services
                     ExerciseName = "Push-ups",
                     Description = "Standard push-ups",
                     Repetitions = "Till failure",
-                    ImageUrl = "/images/workouts/push_ups.jpg"
+                    ImageUrl = "/images/workouts/push_ups.gif"
                 },
                 // Triceps
                 new Workout
@@ -81,7 +81,7 @@ namespace FlexiFit.Services
                     ExerciseName = "Cable with Rope Tricep Extensions",
                     Description = "Tricep cable extensions",
                     Repetitions = "4 sets x 10 reps",
-                    ImageUrl = "/images/workouts/tricep_extensions.jpg"
+                    ImageUrl = "/images/workouts/tricep_extensions.gif"
                 },
                 new Workout
                 {
@@ -90,7 +90,7 @@ namespace FlexiFit.Services
                     ExerciseName = "Dumbbell Overhead Tricep Extension",
                     Description = "Overhead tricep extensions",
                     Repetitions = "3 sets x 10 reps",
-                    ImageUrl = "/images/workouts/overhead_tricep_extension.jpg"
+                    ImageUrl = "/images/workouts/overhead_tricep_extension.gif"
                 },
                 new Workout
                 {
@@ -99,7 +99,7 @@ namespace FlexiFit.Services
                     ExerciseName = "Dips",
                     Description = "Tricep dips",
                     Repetitions = "3 sets till failure",
-                    ImageUrl = "/images/workouts/dips.jpg"
+                    ImageUrl = "/images/workouts/dips.gif"
                 },
                 // Biceps
                 new Workout
@@ -109,7 +109,7 @@ namespace FlexiFit.Services
                     ExerciseName = "Bicep Curls with Dumbbell",
                     Description = "Standard dumbbell bicep curls",
                     Repetitions = "3 sets x 8-10 reps",
-                    ImageUrl = "/images/workouts/bicep_curls.jpg"
+                    ImageUrl = "/images/workouts/bicep_curls.gif"
                 },
                 new Workout
                 {
@@ -118,7 +118,7 @@ namespace FlexiFit.Services
                     ExerciseName = "Hammer Curls with Dumbbell",
                     Description = "Hammer-style dumbbell curls",
                     Repetitions = "3 sets x 10 reps",
-                    ImageUrl = "/images/workouts/hammer_curls.jpg"
+                    ImageUrl = "/images/workouts/hammer_curls.gif"
                 },
                 // Back
                 new Workout
@@ -128,7 +128,7 @@ namespace FlexiFit.Services
                     ExerciseName = "Lat Pull Downs",
                     Description = "Wide-grip lat pull-downs",
                     Repetitions = "4 sets x 8-10 reps",
-                    ImageUrl = "/images/workouts/lat_pull_downs.jpg"
+                    ImageUrl = "/images/workouts/lat_pull_downs.gif"
                 },
                 new Workout
                 {
@@ -137,7 +137,7 @@ namespace FlexiFit.Services
                     ExerciseName = "Seated Cable Rows",
                     Description = "Cable rows for back",
                     Repetitions = "3-4 sets x 8-10 reps",
-                    ImageUrl = "/images/workouts/seated_cable_rows.jpg"
+                    ImageUrl = "/images/workouts/seated_cable_rows.gif"
                 },
                 // Legs
                 new Workout
@@ -147,7 +147,7 @@ namespace FlexiFit.Services
                     ExerciseName = "Squats",
                     Description = "Barbell squats",
                     Repetitions = "3-4 sets x 6-10 reps",
-                    ImageUrl = "/images/workouts/squats.jpg"
+                    ImageUrl = "/images/workouts/squats.gif"
                 },
                 new Workout
                 {
@@ -156,7 +156,7 @@ namespace FlexiFit.Services
                     ExerciseName = "Leg Extensions",
                     Description = "Leg extension machine",
                     Repetitions = "3-4 sets x 10 reps",
-                    ImageUrl = "/images/workouts/leg_extensions.jpg"
+                    ImageUrl = "/images/workouts/leg_extensions.gif"
                 },
                 // Abs
                 new Workout
@@ -166,7 +166,7 @@ namespace FlexiFit.Services
                     ExerciseName = "Sit-ups",
                     Description = "Standard sit-ups",
                     Repetitions = "2 sets x 20-30 reps",
-                    ImageUrl = "/images/workouts/sit_ups.jpg"
+                    ImageUrl = "/images/workouts/sit_ups.gif"
                 },
                 new Workout
                 {
@@ -175,7 +175,7 @@ namespace FlexiFit.Services
                     ExerciseName = "Planks",
                     Description = "Hold plank position",
                     Repetitions = "2 sets x 1 minute",
-                    ImageUrl = "/images/workouts/planks.jpg"
+                    ImageUrl = "/images/workouts/planks.gif"
                 }
 
             );

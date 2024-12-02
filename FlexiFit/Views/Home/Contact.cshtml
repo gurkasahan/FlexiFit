@@ -1,16 +1,18 @@
 ﻿@{
     ViewData["Title"] = "Contact";
-}
-
-@{
     int? memberId = Context.Session.GetInt32("MemberId");
 }
 
-<h2>Contact Us</h2>
-<p>
-    We'd love to hear from you! Please reach out with any questions or feedback.
-</p>
-<p>
-    Email: support@flexifit.com<br />
-    Phone: (123) 456-7890
-</p>
+<div class="page-container">
+    <h1 class="page-title">Contact Us</h1>
+    <p class="page-description">
+        We'd love to hear from you! Whether you have questions, feedback, or need assistance, our
+        team is here to help. Reach out to us through any of the methods below.
+    </p>
+    <div class="contact-info">
+        <p>Email: <a class="contact-link" href="mailto:support@flexifit.com">support@flexifit.com</a></p>
+        <p>Phone: <span>(123) 456-7890</span></p>
+        <p>Address: <span>123 Fitness Lane, Wellness City</span></p>
+    </div>
+    <button class="page-button" onclick="window.location.href='/Home/Index'">Back to Home</button>
+</div>

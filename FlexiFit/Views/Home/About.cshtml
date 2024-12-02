@@ -1,12 +1,15 @@
 ﻿@{
     ViewData["Title"] = "About";
-}
-
-@{
     int? memberId = Context.Session.GetInt32("MemberId");
 }
 
-<h2>About FlexiFit</h2>
-<p>
-    FlexiFit is a premier gym offering state-of-the-art facilities and expert trainers to help you achieve your fitness goals.
-</p>
+<div class="page-container">
+    <h1 class="page-title">About FlexiFit</h1>
+    <p class="page-description">
+        FlexiFit is a premier gym offering state-of-the-art facilities, expert trainers, and
+        cutting-edge equipment to help you achieve your fitness goals. Whether you're a beginner
+        or a fitness enthusiast, FlexiFit provides personalized plans and a supportive community to
+        empower you on your journey.
+    </p>
+    <button class="page-button" onclick="window.location.href='/Home/Index'">Learn More</button>
+</div>
