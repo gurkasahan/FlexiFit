@@ -6,18 +6,28 @@ using Microsoft.AspNetCore.Http;
 
 namespace FlexiFit.Controllers
 {
+    /// <summary>
+    /// Author: Alfred, Gurkaranjit, Kamaldeep
+    /// Manages operations related to gym classes, including listing, viewing, and booking classes.
+    /// </summary>
     [Route("[controller]/[action]")]
     public class ClassesController : Controller
     {
         private readonly IRepository<Class> _classRepository;
         private readonly IRepository<Booking> _bookingRepository;
 
+        /// <summary>
+        /// Constructor to inject class and booking repositories.
+        /// </summary>
         public ClassesController(IRepository<Class> classRepository, IRepository<Booking> bookingRepository)
         {
             _classRepository = classRepository;
             _bookingRepository = bookingRepository;
         }
 
+        /// <summary>
+        /// Lists all available gym classes.
+        /// </summary>
         [HttpGet]
         public IActionResult List()
         {
@@ -25,6 +35,10 @@ namespace FlexiFit.Controllers
             return View(classes);
         }
 
+        /// <summary>
+        /// Provides details of a specific gym class.
+        /// </summary>
+        /// <param name="id">The ID of the class.</param>
         [HttpGet("{id}")]
         public IActionResult Details(int id)
         {
@@ -36,7 +50,9 @@ namespace FlexiFit.Controllers
             return View(cls);
         }
 
-        // GET: Classes/BookClasses
+        /// <summary>
+        /// Displays the page to book a new class.
+        /// </summary>
         [HttpGet]
         public IActionResult BookClasses()
         {
@@ -52,7 +68,10 @@ namespace FlexiFit.Controllers
             return View(new Booking());
         }
 
-        // POST: Classes/BookClasses
+        /// <summary>
+        /// Books a new class for the logged-in user.
+        /// </summary>
+        /// <param name="booking">Booking object containing class details.</param>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult BookClasses(Booking booking)
@@ -83,6 +102,10 @@ namespace FlexiFit.Controllers
             return View(booking);
         }
 
+        /// <summary>
+        /// Books a class directly from the class details page.
+        /// </summary>
+        /// <param name="id">The ID of the class to book.</param>
         [HttpGet("{id}")]
         public IActionResult BookClassFromDetails(int id)
         {
@@ -98,20 +121,16 @@ namespace FlexiFit.Controllers
                 return NotFound("Class not found.");
             }
 
-            // Create a new booking
             var booking = new Booking
             {
                 MemberId = memberId.Value,
                 ClassId = id,
-                BookingDate = DateTime.Now.Date, // Example booking date
-                BookingTime = DateTime.Now.TimeOfDay // Example booking time
+                BookingDate = DateTime.Now.Date,
+                BookingTime = DateTime.Now.TimeOfDay
             };
 
             _bookingRepository.Add(booking);
-
-            // Redirect to the "Schedule" action
             return RedirectToAction("Schedule", "Bookings");
         }
-
     }
 }

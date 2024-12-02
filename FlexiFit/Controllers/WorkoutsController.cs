@@ -1,28 +1,30 @@
-﻿// FlexiFit/Controllers/WorkoutsController.cs
-using Microsoft.AspNetCore.Mvc;
-using FlexiFit.Entities;
-using FlexiFit.Services;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 using FlexiFit.Entities.Models;
 using FlexiFit.Services.Repositories;
+using System.Linq;
 
 namespace FlexiFit.Controllers
 {
     /// <summary>
-    /// Author: Your Name
-    /// Manages workout-related operations.
+    /// Author: Alfred, Gurkaranjit, Kamaldeep
+    /// Handles workout-related operations such as viewing exercises and their details.
     /// </summary>
     [Route("[controller]/[action]")]
     public class WorkoutsController : Controller
     {
         private readonly IRepository<Workout> _workoutRepository;
 
+        /// <summary>
+        /// Constructor for dependency injection of workout repository.
+        /// </summary>
         public WorkoutsController(IRepository<Workout> workoutRepository)
         {
             _workoutRepository = workoutRepository;
         }
 
-        // GET: Workouts/FindExercise
+        /// <summary>
+        /// Lists distinct muscle groups available for workouts.
+        /// </summary>
         [HttpGet]
         public IActionResult FindExercise()
         {
@@ -33,7 +35,10 @@ namespace FlexiFit.Controllers
             return View(muscleGroups);
         }
 
-        // GET: Workouts/WorkoutDetails?muscleGroup=Chest
+        /// <summary>
+        /// Displays details of workouts for a specific muscle group.
+        /// </summary>
+        /// <param name="muscleGroup">The muscle group to filter workouts by.</param>
         [HttpGet]
         public IActionResult WorkoutDetails(string muscleGroup)
         {
@@ -51,13 +56,14 @@ namespace FlexiFit.Controllers
                 ViewBag.Message = $"No workouts found for {muscleGroup}.";
             }
 
-            // Pass muscle group to ViewBag for the title
             ViewBag.MuscleGroup = muscleGroup;
-
             return View(workouts);
         }
 
-        // GET: Workouts/Details/{id}
+        /// <summary>
+        /// Displays details of a specific workout.
+        /// </summary>
+        /// <param name="id">The ID of the workout.</param>
         [HttpGet("{id}")]
         public IActionResult Details(int id)
         {

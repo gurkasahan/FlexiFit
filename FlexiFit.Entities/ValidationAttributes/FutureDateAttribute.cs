@@ -1,14 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace FlexiFit.Entities.ValidationAttributes 
+namespace FlexiFit.Entities.ValidationAttributes
 {
+    /// <summary>
+    /// Principal Author: [Your Name]
+    /// Custom validation attribute to ensure a date is in the future.
+    /// </summary>
     public class FutureDateAttribute : ValidationAttribute
     {
+        /// <summary>
+        /// Validates whether the given date is in the future.
+        /// </summary>
+        /// <param name="value">The date to validate.</param>
+        /// <param name="validationContext">The context of the validation.</param>
+        /// <returns>A ValidationResult indicating success or failure.</returns>
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             if (value is DateTime date && date >= DateTime.Now)

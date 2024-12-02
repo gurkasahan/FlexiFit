@@ -1,16 +1,15 @@
-﻿// FlexiFit/Controllers/BookingsController.cs
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using FlexiFit.Entities.Models;
 using FlexiFit.Services.Repositories;
 using System;
 using System.Linq;
-using Microsoft.AspNetCore.Http; // For session management
+using Microsoft.AspNetCore.Http;
 
 namespace FlexiFit.Controllers
 {
     /// <summary>
     /// Author: Alfred, Gurkaranjit, Kamaldeep
-    /// Manages booking-related operations.
+    /// Controller to manage booking-related operations such as viewing, creating, and deleting bookings.
     /// </summary>
     [Route("[controller]/[action]")]
     public class BookingsController : Controller
@@ -19,6 +18,9 @@ namespace FlexiFit.Controllers
         private readonly IRepository<Class> _classRepository;
         private readonly IRepository<Member> _memberRepository;
 
+        /// <summary>
+        /// Constructor for dependency injection of repositories.
+        /// </summary>
         public BookingsController(
             IRepository<Booking> bookingRepository,
             IRepository<Class> classRepository,
@@ -29,7 +31,10 @@ namespace FlexiFit.Controllers
             _memberRepository = memberRepository;
         }
 
-        // GET: Bookings/Schedule
+        /// <summary>
+        /// Retrieves the schedule of the logged-in user.
+        /// </summary>
+        /// <returns>View displaying the user's booking schedule.</returns>
         [HttpGet]
         public IActionResult Schedule()
         {
@@ -39,7 +44,6 @@ namespace FlexiFit.Controllers
                 int? memberId = HttpContext.Session.GetInt32("MemberId");
                 if (memberId == null)
                 {
-                    // User is not signed in, redirect to SignUp page
                     return RedirectToAction("Login", "Members");
                 }
 
@@ -55,7 +59,7 @@ namespace FlexiFit.Controllers
                     })
                     .ToList();
 
-                // Populate ViewBag.Classes with available classes
+                // Populate ViewBag.Classes with available classes for the dropdown
                 ViewBag.Classes = _classRepository.GetAll()
                     .Select(c => new { c.ClassId, c.ClassName })
                     .ToList();
@@ -68,7 +72,11 @@ namespace FlexiFit.Controllers
             }
         }
 
-        // GET: Bookings/Delete/{id}
+        /// <summary>
+        /// Deletes a booking by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the booking to delete.</param>
+        /// <returns>View to confirm the deletion of the booking.</returns>
         [HttpGet("{id}")]
         public IActionResult Delete(int id)
         {
@@ -78,7 +86,7 @@ namespace FlexiFit.Controllers
                 int? memberId = HttpContext.Session.GetInt32("MemberId");
                 if (memberId == null)
                 {
-                    return RedirectToAction("SignUp", "Members");
+                    return RedirectToAction("Login", "Members");
                 }
 
                 var booking = _bookingRepository.GetById(id);
@@ -87,7 +95,6 @@ namespace FlexiFit.Controllers
                     return NotFound();
                 }
 
-                // Load related class information
                 booking.Class = _classRepository.GetById(booking.ClassId);
 
                 return View(booking);
@@ -98,7 +105,10 @@ namespace FlexiFit.Controllers
             }
         }
 
-        // POST: Bookings/DeleteConfirmed
+        /// <summary>
+        /// Confirms and deletes a booking.
+        /// </summary>
+        /// <param name="bookingId">The ID of the booking to delete.</param>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int bookingId)
@@ -109,7 +119,7 @@ namespace FlexiFit.Controllers
                 int? memberId = HttpContext.Session.GetInt32("MemberId");
                 if (memberId == null)
                 {
-                    return RedirectToAction("SignUp", "Members");
+                    return RedirectToAction("Login", "Members");
                 }
 
                 var booking = _bookingRepository.GetById(bookingId);
@@ -127,6 +137,12 @@ namespace FlexiFit.Controllers
             }
         }
 
+        /// <summary>
+        /// Books a new class for the logged-in member.
+        /// </summary>
+        /// <param name="classId">ID of the class to book.</param>
+        /// <param name="bookingDate">Date of the booking.</param>
+        /// <param name="bookingTime">Time of the booking.</param>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult BookClasses(int classId, DateTime bookingDate, TimeSpan bookingTime)
@@ -139,7 +155,7 @@ namespace FlexiFit.Controllers
                     return RedirectToAction("Login", "Members");
                 }
 
-                // Create a new booking for the logged-in user
+                // Create a new booking
                 var booking = new Booking
                 {
                     MemberId = memberId.Value,
@@ -149,7 +165,7 @@ namespace FlexiFit.Controllers
                 };
 
                 _bookingRepository.Add(booking);
-                return RedirectToAction("Schedule"); // Redirect to the My Schedule page
+                return RedirectToAction("Schedule");
             }
             catch (Exception ex)
             {

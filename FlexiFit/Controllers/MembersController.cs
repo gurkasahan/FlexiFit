@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Http;
 
 namespace FlexiFit.Controllers
 {
+    /// <summary>
+    /// Author: Alfred, Gurkaranjit, Kamaldeep
+    /// Handles member-related operations such as sign-up, login, membership management, and booking classes.
+    /// </summary>
     [Route("[controller]/[action]")]
     public class MembersController : Controller
     {
@@ -15,6 +19,9 @@ namespace FlexiFit.Controllers
         private readonly IRepository<Workout> _workoutRepository;
         private readonly IRepository<Booking> _bookingRepository;
 
+        /// <summary>
+        /// Constructor for dependency injection of repositories.
+        /// </summary>
         public MembersController(
             IRepository<Member> memberRepository,
             IRepository<Class> classRepository,
@@ -27,89 +34,89 @@ namespace FlexiFit.Controllers
             _bookingRepository = bookingRepository;
         }
 
-        // GET: Members/SignUp
+        /// <summary>
+        /// Displays the sign-up page for new members.
+        /// </summary>
         [HttpGet]
         public IActionResult SignUp()
         {
             return View();
         }
 
-        // POST: Members/SignUp
+        /// <summary>
+        /// Handles new member sign-up.
+        /// </summary>
+        /// <param name="member">The member details entered by the user.</param>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult SignUp(Member member)
         {
             if (ModelState.IsValid)
             {
-                // Add the new member to the repository
-                _memberRepository.Add(member);
-
-                // Store MemberId in session
-                HttpContext.Session.SetInt32("MemberId", member.MemberId);
-
-                // Redirect to MemberInfo page
+                _memberRepository.Add(member); // Adds the new member to the repository
+                HttpContext.Session.SetInt32("MemberId", member.MemberId); // Stores the member's ID in the session
                 return RedirectToAction("MemberInfo", new { id = member.MemberId });
             }
             return View(member);
         }
 
-        // GET: Members/Login
+        /// <summary>
+        /// Displays the login page for members.
+        /// </summary>
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
-        // POST: Members/Login
+        /// <summary>
+        /// Authenticates a member's login credentials.
+        /// </summary>
+        /// <param name="model">Login credentials submitted by the user.</param>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
-
-                // Authenticate the user
                 var member = _memberRepository.GetAll()
                     .FirstOrDefault(m => m.Email == model.Email && m.Password == model.Password);
 
                 if (member != null)
                 {
-                    // Store MemberId in session
-                    HttpContext.Session.SetInt32("MemberId", member.MemberId);
-
-                    // Redirect to MemberInfo page
+                    HttpContext.Session.SetInt32("MemberId", member.MemberId); // Store the member ID in session
                     return RedirectToAction("MemberInfo", new { id = member.MemberId });
                 }
 
-                // If authentication fails
                 ModelState.AddModelError("", "Invalid email or password.");
             }
             return View(model);
         }
 
-        // GET: Members/Logout
+        /// <summary>
+        /// Logs out the member and clears session data.
+        /// </summary>
         [HttpGet]
         public IActionResult Logout()
         {
-            // Clear session data
-            HttpContext.Session.Clear();
-
-            // Redirect to Home page
-            return RedirectToAction("Index", "Home");
+            HttpContext.Session.Clear(); // Clear session data
+            return RedirectToAction("Index", "Home"); // Redirect to Home page
         }
 
-        // GET: Members/MemberInfo/{id}
+        /// <summary>
+        /// Displays the member's information page.
+        /// </summary>
+        /// <param name="id">The ID of the member.</param>
         [HttpGet("{id}")]
         public IActionResult MemberInfo(int id)
         {
             int? memberId = HttpContext.Session.GetInt32("MemberId");
             if (memberId == null)
             {
-                return RedirectToAction("Login", "Members"); // Redirect to login if not logged in
+                return RedirectToAction("Login", "Members"); // Redirect if not logged in
             }
-            // Retrieve the member by ID
-            var member = _memberRepository.GetById(memberId.Value);
 
+            var member = _memberRepository.GetById(memberId.Value);
             if (member == null)
             {
                 return NotFound("Member not found.");
@@ -118,18 +125,20 @@ namespace FlexiFit.Controllers
             return View(member);
         }
 
-        // GET: Members/ManageMembership/{id}
+        /// <summary>
+        /// Displays the membership management page.
+        /// </summary>
+        /// <param name="id">The ID of the member whose membership is being managed.</param>
         [HttpGet("{id}")]
         public IActionResult ManageMembership(int id)
         {
             int? memberId = HttpContext.Session.GetInt32("MemberId");
             if (memberId == null)
             {
-                return RedirectToAction("Login", "Members"); // Redirect to login if not logged in
+                return RedirectToAction("Login", "Members");
             }
-            // Retrieve the member by ID
-            var member = _memberRepository.GetById(id);
 
+            var member = _memberRepository.GetById(id);
             if (member == null)
             {
                 return NotFound("Member not found.");
@@ -138,7 +147,11 @@ namespace FlexiFit.Controllers
             return View(member);
         }
 
-        // POST: Members/ManageMembership/{id}
+        /// <summary>
+        /// Updates the member's membership status.
+        /// </summary>
+        /// <param name="id">The ID of the member.</param>
+        /// <param name="isActive">The new membership status.</param>
         [HttpPost("{id}")]
         [ValidateAntiForgeryToken]
         public IActionResult ManageMembership(int id, bool isActive)
@@ -146,28 +159,27 @@ namespace FlexiFit.Controllers
             int? memberId = HttpContext.Session.GetInt32("MemberId");
             if (memberId == null)
             {
-                return RedirectToAction("Login", "Members"); // Redirect to login if not logged in
+                return RedirectToAction("Login", "Members");
             }
 
             var member = _memberRepository.GetById(id);
-
             if (member == null)
             {
                 return NotFound("Member not found.");
             }
 
-            // Update membership status
-            member.IsActive = isActive;
+            member.IsActive = isActive; // Update membership status
             _memberRepository.Update(member);
 
             return RedirectToAction("MemberInfo", new { id = member.MemberId });
         }
 
-        // GET: Members/FindExercise
+        /// <summary>
+        /// Lists all distinct muscle groups for exercises.
+        /// </summary>
         [HttpGet]
         public IActionResult FindExercise()
         {
-
             var muscleGroups = _workoutRepository.GetAll()
                 .Select(w => w.MuscleGroup)
                 .Distinct()
@@ -176,7 +188,10 @@ namespace FlexiFit.Controllers
             return View(muscleGroups);
         }
 
-        // GET: Members/WorkoutDetails?muscleGroup=Chest
+        /// <summary>
+        /// Displays workouts related to a specific muscle group.
+        /// </summary>
+        /// <param name="muscleGroup">The muscle group to filter workouts by.</param>
         [HttpGet]
         public IActionResult WorkoutDetails(string muscleGroup)
         {
@@ -187,7 +202,9 @@ namespace FlexiFit.Controllers
             return View(workouts);
         }
 
-        // GET: Members/BookClasses
+        /// <summary>
+        /// Displays the page for booking classes.
+        /// </summary>
         [HttpGet]
         public IActionResult BookClasses()
         {
@@ -203,7 +220,13 @@ namespace FlexiFit.Controllers
             return View(new Booking());
         }
 
-        // POST: Members/BookClasses
+        /// <summary>
+        /// Books a class for a member.
+        /// </summary>
+        /// <param name="memberId">The ID of the member.</param>
+        /// <param name="classId">The ID of the class to be booked.</param>
+        /// <param name="bookingDate">The date of the booking.</param>
+        /// <param name="bookingTime">The time of the booking.</param>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult BookClasses(int memberId, int classId, DateTime bookingDate, TimeSpan bookingTime)
@@ -217,11 +240,13 @@ namespace FlexiFit.Controllers
             };
 
             _bookingRepository.Add(booking);
-
             return RedirectToAction("Schedule", "Bookings");
         }
 
-        // GET: Members/ClassSchedule/{id}
+        /// <summary>
+        /// Displays the class schedule for a member.
+        /// </summary>
+        /// <param name="id">The ID of the member.</param>
         [HttpGet("{id}")]
         public IActionResult ClassSchedule(int id)
         {

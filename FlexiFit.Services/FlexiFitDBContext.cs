@@ -1,20 +1,50 @@
 ﻿using FlexiFit.Entities;
 using FlexiFit.Entities.Models;
 using Microsoft.EntityFrameworkCore;
+
 namespace FlexiFit.Services
 {
+    /// <summary>
+    /// Principal Author: [Your Name]
+    /// This class represents the DbContext for the FlexiFit application. It defines the database schema,
+    /// relationships, and seed data for the application's database.
+    /// </summary>
     public class FlexiFitDBContext : DbContext
     {
+        /// <summary>
+        /// Constructor for initializing the FlexiFitDBContext with the provided DbContext options.
+        /// </summary>
+        /// <param name="options">Options for configuring the DbContext.</param>
         public FlexiFitDBContext(DbContextOptions<FlexiFitDBContext> options) : base(options) { }
 
+        /// <summary>
+        /// Represents the Members table in the database.
+        /// </summary>
         public DbSet<Member> Members { get; set; }
+
+        /// <summary>
+        /// Represents the Classes table in the database.
+        /// </summary>
         public DbSet<Class> Classes { get; set; }
+
+        /// <summary>
+        /// Represents the Bookings table in the database.
+        /// </summary>
         public DbSet<Booking> Bookings { get; set; }
+
+        /// <summary>
+        /// Represents the Workouts table in the database.
+        /// </summary>
         public DbSet<Workout> Workouts { get; set; }
 
+        /// <summary>
+        /// Configures relationships between entities and seeds initial data for the database.
+        /// </summary>
+        /// <param name="modelBuilder">ModelBuilder instance for configuring the entity framework model.</param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Configure relationships
+            // Define relationships between Booking, Member, and Class entities.
+            // Cascade deletion ensures that related bookings are removed when a member or class is deleted.
             modelBuilder.Entity<Booking>()
                 .HasOne(b => b.Member)
                 .WithMany(m => m.Bookings)
@@ -27,7 +57,8 @@ namespace FlexiFit.Services
                 .HasForeignKey(b => b.ClassId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // Seed Data
+            // Seed initial data for the Classes table.
+            // This ensures the application starts with pre-defined classes like Yoga, Pilates, etc.
             modelBuilder.Entity<Class>().HasData(
                 new Class { ClassId = 1, ClassName = "Yoga" },
                 new Class { ClassId = 2, ClassName = "Pilates" },
@@ -35,7 +66,8 @@ namespace FlexiFit.Services
                 new Class { ClassId = 4, ClassName = "Strength-Training" }
             );
 
-            // Seed Workouts
+            // Seed initial data for the Workouts table.
+            // This provides predefined workout options categorized by muscle group for users.
             modelBuilder.Entity<Workout>().HasData(
                 new Workout
                 {
@@ -73,7 +105,7 @@ namespace FlexiFit.Services
                     Repetitions = "Till failure",
                     ImageUrl = "/images/workouts/push_ups.gif"
                 },
-                // Triceps
+                // Triceps workouts
                 new Workout
                 {
                     WorkoutId = 5,
@@ -101,7 +133,7 @@ namespace FlexiFit.Services
                     Repetitions = "3 sets till failure",
                     ImageUrl = "/images/workouts/dips.gif"
                 },
-                // Biceps
+                // Biceps workouts
                 new Workout
                 {
                     WorkoutId = 8,
@@ -120,7 +152,7 @@ namespace FlexiFit.Services
                     Repetitions = "3 sets x 10 reps",
                     ImageUrl = "/images/workouts/hammer_curls.gif"
                 },
-                // Back
+                // Back workouts
                 new Workout
                 {
                     WorkoutId = 10,
@@ -139,7 +171,7 @@ namespace FlexiFit.Services
                     Repetitions = "3-4 sets x 8-10 reps",
                     ImageUrl = "/images/workouts/seated_cable_rows.gif"
                 },
-                // Legs
+                // Legs workouts
                 new Workout
                 {
                     WorkoutId = 12,
@@ -158,7 +190,7 @@ namespace FlexiFit.Services
                     Repetitions = "3-4 sets x 10 reps",
                     ImageUrl = "/images/workouts/leg_extensions.gif"
                 },
-                // Abs
+                // Abs workouts
                 new Workout
                 {
                     WorkoutId = 14,
@@ -177,10 +209,7 @@ namespace FlexiFit.Services
                     Repetitions = "2 sets x 1 minute",
                     ImageUrl = "/images/workouts/planks.gif"
                 }
-
             );
-             
         }
-
     }
 }
