@@ -51,6 +51,9 @@ namespace FlexiFit.Controllers
                 ViewBag.Message = $"No workouts found for {muscleGroup}.";
             }
 
+            // Pass muscle group to ViewBag for the title
+            ViewBag.MuscleGroup = muscleGroup;
+
             return View(workouts);
         }
 

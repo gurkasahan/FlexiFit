@@ -1,12 +1,70 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Welcome to FlexiFit!";
 }
 
-<div class="jumbotron">
-    <h1 class="display-4">Welcome to FlexiFit!</h1>
-    <p class="lead">Your journey to fitness starts here.</p>
-    <hr class="my-4" />
-    <p>
-        <a class="btn btn-primary btn-lg" asp-controller="Members" asp-action="SignUp" role="button">Join Now</a>
-    </p>
+<!-- Hero Section with Animated Gradient and Text Animation -->
+<div class="hero-section">
+    <div class="container text-center">
+        <h1 class="hero-title">Welcome to FlexiFit!</h1>
+        <p class="hero-subtitle">Your journey to fitness starts here.</p>
+        <a href="/Members/SignUp" class="btn btn-primary btn-lg mt-3">Join Now</a>
+    </div>
 </div>
+
+<!-- Features Section -->
+<div class="features-section mt-5">
+    <div class="container">
+        <h2 class="text-center mb-4" data-aos="fade-up">Why Choose FlexiFit?</h2>
+        <div class="row text-center">
+            <div class="col-md-4" data-aos="fade-right">
+                <i class="fas fa-dumbbell fa-4x text-primary mb-3"></i>
+                <h5 class="fw-bold">Expert Trainers</h5>
+                <p>Get personalized training from certified professionals.</p>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-heartbeat fa-4x text-danger mb-3"></i>
+                <h5 class="fw-bold">Comprehensive Workouts</h5>
+                <p>A wide range of classes to suit all fitness levels.</p>
+            </div>
+            <div class="col-md-4" data-aos="fade-left" data-aos-delay="400">
+                <i class="fas fa-spa fa-4x text-success mb-3"></i>
+                <h5 class="fw-bold">Relaxation & Wellness</h5>
+                <p>Focus on your mental and physical well-being.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scrolling Testimonials Section -->
+<div class="testimonials-section py-5 bg-light">
+    <div class="container text-center">
+        <h2 class="mb-4" data-aos="fade-up">What the Experts Say</h2>
+        <div class="testimonials-wrapper">
+            <div class="testimonial-box">
+                <p>"FlexiFit is a game-changer in the fitness world!"</p>
+                <p class="text-muted">- Dr. Sarah Johnson</p>
+            </div>
+            <div class="testimonial-box">
+                <p>"Their classes are designed to fit every fitness level."</p>
+                <p class="text-muted">- Coach John Doe</p>
+            </div>
+            <div class="testimonial-box">
+                <p>"A perfect combination of physical and mental well-being."</p>
+                <p class="text-muted">- Wellness Guru Emily Smith</p>
+            </div>
+            <div class="testimonial-box">
+                <p>"FlexiFit motivates me to achieve my goals every day."</p>
+                <p class="text-muted">- Dr. Michael Brown</p>
+            </div>
+            <div class="testimonial-box">
+                <p>"The best trainers and top-notch facilities."</p>
+                <p class="text-muted">- Fitness Expert Lisa White</p>
+            </div>
+            <div class="testimonial-box">
+                <p>"The ultimate destination for holistic wellness."</p>
+                <p class="text-muted">- Health Coach David Green</p>
+            </div>
+        </div>
+    </div>
+</div>
+

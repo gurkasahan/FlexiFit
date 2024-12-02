@@ -4,14 +4,38 @@
     ViewData["Title"] = "Available Classes";
 }
 
-<h2>Available Classes</h2>
+<div class="classes-page">
+    <div class="classes-container">
+        <h1 class="classes-title">Available Classes</h1>
+        <div class="classes-grid">
+            @foreach (var cls in Model)
+            {
+                <div class="class-card">
+                    <div class="class-icon">
+                        @if (cls.ClassName == "Yoga")
+                        {
+                            <i class="fas fa-spa"></i>
+                        }
+                        else if (cls.ClassName == "Pilates")
+                        {
+                            <i class="fas fa-dumbbell"></i>
+                        }
+                        else if (cls.ClassName == "Zumba")
+                        {
+                            <i class="fas fa-music"></i>
+                        }
+                        else if (cls.ClassName == "Strength-Training")
+                        {
+                            <i class="fas fa-weight-hanging"></i>
+                        }
+                    </div>
+                    <h3 class="class-name">@cls.ClassName</h3>
+                    <p class="class-description">Discover the best @cls.ClassName sessions tailored to your needs.</p>
+                    <a asp-action="Details" asp-route-id="@cls.ClassId" class="btn-class">View Details</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
 
-<ul class="list-group">
-    @foreach (var cls in Model)
-    {
-        <li class="list-group-item">
-            <h4>@cls.ClassName</h4>
-            <a asp-action="Details" asp-route-id="@cls.ClassId" class="btn btn-link">View Details</a>
-        </li>
-    }
-</ul>
+

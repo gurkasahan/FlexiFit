@@ -1,39 +1,702 @@
+
+/* General Styles */
 body {
-    background-color: #f8f9fa;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-h2 {
-    color: #343a40;
+/* Hero Section with Animated Gradient */
+.hero-section {
+    height: 60vh; /* Balanced height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, #007BFF, #6610F2, #20C997);
+    background-size: 300% 300%;
+    animation: gradientAnimation 8s ease infinite;
+    color: white;
+    overflow: hidden; /* Prevent overflow issues */
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    opacity: 0; /* Hidden initially */
+    transform: translateY(20px); /* Slide up */
+    animation: fadeSlideIn 1.5s ease forwards; /* Animation */
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    margin-top: 1rem;
+    color: #f8f9fa;
+    opacity: 0; /* Hidden initially */
+    transform: translateY(20px);
+    animation: fadeSlideIn 1.5s ease forwards 0.5s; /* Delayed animation */
+}
+
+.btn-primary {
+    opacity: 0; /* Hidden initially */
+    transform: scale(0.8); /* Start small */
+    animation: popIn 1.5s ease forwards 1s; /* Pop-in animation after delay */
+}
+
+/* Keyframes for Gradient Animation */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Keyframes for Fade and Slide In */
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Keyframes for Button Pop-In */
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* Features Section */
+.features-section {
+    padding: 50px 0;
+}
+
+    .features-section h2 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .features-section .text-center i {
+        transition: transform 0.3s ease;
+    }
+
+        .features-section .text-center i:hover {
+            transform: scale(1.2);
+        }
+
+/* Testimonials Section */
+.testimonials-section {
+    background-color: #f8f9fa;
+    position: relative;
+    padding: 50px 0;
+}
+
+.testimonials-wrapper {
+    display: flex;
+    gap: 30px; /* Spacing between testimonial boxes */
+    animation: scrollTestimonials 15s linear infinite; /* Smooth scrolling */
+}
+
+.testimonial-box {
+    flex: 0 0 300px;
+    margin: 0 10px;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+    .testimonial-box p {
+        margin: 0;
+        font-size: 1rem;
+    }
+
+    .testimonial-box .text-muted {
+        margin-top: 10px;
+        font-size: 0.9rem;
+        font-style: italic;
+    }
+
+/* Keyframes for Scrolling Comments */
+@keyframes scrollTestimonials {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Sign-Up Page Styles */
+.signup-page {
+    background: url('/images/Signupbg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Dark overlay for readability */
+    z-index: 1;
+}
+
+.signup-container {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.1); /* Frosted glass effect */
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    animation: fadeIn 1.5s ease; /* Fade-in animation */
+}
+
+.signup-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #00FFFF; /* Aqua color matching background */
+    margin-bottom: 10px;
+}
+
+.signup-text {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.signup-form input,
+.signup-form select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: none;
+    background: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    color: #333;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+    .signup-form input:focus,
+    .signup-form select:focus {
+        outline: none;
+        box-shadow: 0 0 10px #00FFFF;
+    }
+
+.signup-button {
+    background: linear-gradient(135deg, #00FFFF, #007BFF);
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .signup-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 5px 15px rgba(0, 255, 255, 0.6);
+    }
+
+    .signup-button:active {
+        transform: scale(1);
+        box-shadow: none;
+    }
+
+/* Keyframes for Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Member Information Page Styles */
+.member-info-page {
+    background: url('/images/360_F_102528344_XfIuLtPSSBIIR3NYtLRe1QOBUgkdS8Cp.jpg') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.member-info-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Dark overlay for readability */
+    z-index: 1;
+}
+
+.member-info-container {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.1); /* Frosted glass effect */
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    max-width: 600px;
+    width: 90%;
+    text-align: left;
+    animation: fadeIn 1.5s ease; /* Fade-in animation */
+}
+
+.member-info-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #00FFFF;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.member-info-detail {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+    .member-info-detail span {
+        font-weight: bold;
+        color: #00FFFF;
+    }
+
+.manage-membership-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #00FFFF, #007BFF);
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     margin-top: 20px;
 }
 
-.form-group {
+    .manage-membership-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 5px 15px rgba(0, 255, 255, 0.6);
+    }
+
+/* Fade-In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* General Page Background */
+.page-background {
+    background: linear-gradient(135deg, #1a1a1a, #333333); /* Subtle gradient */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Shared Card Design */
+.card-container {
+    background: rgba(255, 255, 255, 0.05); /* Subtle frosted glass */
+    backdrop-filter: blur(5px);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 90%;
+    animation: fadeIn 1s ease;
+}
+
+/* Title Styling */
+.card-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #00FFFF;
+    text-align: center;
     margin-bottom: 15px;
 }
 
-.workout {
-    background-color: #fff;
-    padding: 20px;
+/* Description/Text Styling */
+.card-description {
+    font-size: 1.2rem;
+    color: #dcdcdc;
+    text-align: center;
     margin-bottom: 20px;
-    border-radius: 5px;
 }
 
-    .workout img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 5px;
-    }
-
-.btn-primary {
-    background-color: #007bff;
-    border: none;
+/* Member Details (for Member Info Page) */
+.card-detail {
+    font-size: 1rem;
+    margin: 10px 0;
+    color: #ffffff;
 }
 
-    .btn-primary:hover {
-        background-color: #0056b3;
-    }
-
-.navbar-brand {
+.card-detail span {
     font-weight: bold;
+    color: #00FFFF;
 }
+
+/* Form Elements */
+.card-form select,
+.card-form input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.card-form select:focus,
+.card-form input:focus {
+    outline: none;
+    box-shadow: 0 0 10px #00FFFF;
+}
+
+/* Button Design */
+.card-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #00FFFF, #007BFF);
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.card-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 255, 255, 0.6);
+}
+
+/* Fade-In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Classes Page */
+.classes-page {
+    background-color: #1a1a1a; /* Dark gym theme */
+    color: #ffffff;
+    margin: 0; /* Remove any margin causing white borders */
+    padding: 20px; /* Add padding for content spacing */
+     width: 100vw;
+    height: 100%; /* Ensures full-page coverage */
+    min-height: 100vh; /* Fills the viewport */
+
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.classes-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.classes-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #00FFFF; /* Energetic accent color */
+    margin-bottom: 30px;
+}
+
+.classes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.class-card {
+    background: rgba(255, 255, 255, 0.1); /* Frosted glass effect */
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .class-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 30px rgba(0, 255, 255, 0.5);
+    }
+
+.class-icon {
+    font-size: 3rem;
+    color: #00FFFF; /* Energetic teal for icons */
+    margin-bottom: 15px;
+}
+
+.class-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.class-description {
+    font-size: 1rem;
+    color: #dcdcdc;
+    margin-bottom: 20px;
+}
+
+.btn-class {
+    display: inline-block;
+    background: linear-gradient(135deg, #00FFFF, #007BFF);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    box-shadow: 0 5px 10px rgba(0, 255, 255, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .btn-class:hover {
+        transform: scale(1.1);
+        box-shadow: 0 10px 20px rgba(0, 255, 255, 0.6);
+    }
+
+
+/* Class Details Page */
+.class-details-page {
+    background: linear-gradient(135deg, #000000, #1a1a1a); /* Aggressive dark gym theme */
+    min-height: 100vh;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.details-container {
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 1.5s ease;
+}
+
+.class-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #00FFFF;
+    margin-bottom: 15px;
+}
+
+.class-info {
+    font-size: 1.2rem;
+    color: #dcdcdc;
+    margin-bottom: 30px;
+}
+
+/* Scoped Styling for Find Exercise Page */
+.find-exercise-page {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 20px;
+    width:100vw;
+    margin: 0; /* Eliminate any margin causing white borders */
+    height: 100%; /* Ensures full-page coverage */
+    min-height: 100vh; /* Fills the viewport */
+}
+
+.find-exercise-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.find-exercise-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #00ffff;
+    margin-bottom: 30px;
+}
+
+/* Muscle Grid */
+.exercise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.muscle-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+    .muscle-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 30px rgba(0, 255, 255, 0.5);
+    }
+
+.muscle-icon {
+    font-size: 3rem;
+    color: #00ffff;
+    margin-bottom: 15px;
+}
+
+
+
+.muscle-name {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.btn-muscle {
+    background: linear-gradient(135deg, #00ffff, #007bff);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .btn-muscle:hover {
+        transform: scale(1.1);
+        box-shadow: 0 10px 20px rgba(0, 255, 255, 0.6);
+    }
+
+
+/* Scoped Styling for Workout Details Page */
+.workout-details-page {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 20px;
+    margin: 0; /* Eliminate white borders */
+    height: 100%; /* Ensures full-page coverage */
+    min-height: 100vh; /* Fills the viewport */
+}
+
+.workout-details-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.workout-details-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #00ffff;
+    margin-bottom: 30px;
+}
+
+/* Workout List Styling */
+.workout-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.workout-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    width: 300px;
+    text-align: left;
+    color: #ffffff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+    .workout-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .workout-card img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+
+
+
+

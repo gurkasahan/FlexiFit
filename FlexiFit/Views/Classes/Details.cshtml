@@ -4,11 +4,12 @@
     ViewData["Title"] = "Class Details";
 }
 
-<h2>@Model.ClassName</h2>
-
-<p>
-    <!-- You can add more details about the class here -->
-    This class focuses on improving your @Model.ClassName skills.
-</p>
-
-<a asp-action="BookClasses" asp-route-memberId="@ViewBag.MemberId" class="btn btn-primary">Book This Class</a>
+<div class="class-details-page">
+    <div class="details-container">
+        <h1 class="class-title">@Model.ClassName</h1>
+        <p class="class-info">
+            Take your fitness journey to the next level with our specialized @Model.ClassName sessions.
+        </p>
+        <a asp-action="BookClasses" asp-route-memberId="@ViewBag.MemberId" class="btn-class">Book This Class</a>
+    </div>
+</div>
