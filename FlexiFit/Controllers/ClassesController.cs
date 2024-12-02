@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using FlexiFit.Entities.Models;
 using FlexiFit.Services.Repositories;
 using System.Linq;
+using FlexiFit.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace FlexiFit.Controllers
 {
@@ -37,25 +39,73 @@ namespace FlexiFit.Controllers
             return View(cls);
         }
 
+        // GET: Classes/BookClasses
         [HttpGet]
         public IActionResult BookClasses()
         {
-            ViewBag.Classes = _classRepository.GetAll().ToList();
-            return View();
+            try
+            {
+                int? memberId = HttpContext.Session.GetInt32("MemberId");
+                if (memberId == null)
+                {
+                    // User is not signed in, redirect to SignUp page
+                    return RedirectToAction("SignUp", "Members");
+                }
+
+                var classes = _classRepository.GetAll().ToList();
+                ViewBag.Classes = classes;
+
+                return View();
+            }
+            catch (Exception ex)
+            {
+                return View("Error", new ErrorViewModel { Message = ex.Message });
+            }
         }
 
+        // POST: Classes/BookClasses
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult BookClasses(Booking booking)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _bookingRepository.Add(booking);
-                return RedirectToAction("List");
-            }
 
-            ViewBag.Classes = _classRepository.GetAll().ToList();
-            // After successfully adding a booking
-            return RedirectToAction("Schedule", "Bookings");
+                int? memberId = HttpContext.Session.GetInt32("MemberId");
+                if (memberId == null)
+                {
+                    return RedirectToAction("SignUp", "Members");
+                }
+
+                booking.MemberId = memberId.Value;
+
+                if (ModelState.IsValid)
+                {
+                    var cls = _classRepository.GetById(booking.ClassId);
+
+                    if (cls == null)
+                    {
+                        ModelState.AddModelError("", "Invalid class.");
+                        ViewBag.Classes = _classRepository.GetAll().ToList();
+                        return View(booking);
+                    }
+
+                    // Add booking and save changes
+                    _bookingRepository.Add(booking);
+                    return RedirectToAction("Schedule", "Bookings");
+                }
+                else
+                {
+                    ViewBag.Classes = _classRepository.GetAll().ToList();
+                    return View(booking);
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "An error occurred while booking the class.");
+                ViewBag.Classes = _classRepository.GetAll().ToList();
+                return View(booking);
+            }
         }
     }
 }

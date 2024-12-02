@@ -51,7 +51,6 @@ namespace FlexiFit.Controllers
                 return View("Error", new ErrorViewModel { Message = ex.Message });
             }
         }
-
         // POST: Members/SignUp
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -62,23 +61,30 @@ namespace FlexiFit.Controllers
                 if (ModelState.IsValid)
                 {
                     _memberRepository.Add(member);
+
+                    // Store MemberId in session
+                    HttpContext.Session.SetInt32("MemberId", member.MemberId);
+
                     return RedirectToAction("MemberInfo", new { id = member.MemberId });
                 }
                 else
                 {
-                    // If validation fails, return the view with validation messages
                     return View(member);
                 }
             }
             catch (Exception ex)
             {
-                // Log the exception
                 ModelState.AddModelError("", "An error occurred while processing your request. Please try again.");
-
-
-                // Return the view with the current member model and validation messages
                 return View(member);
             }
+        }
+
+        // Implement Logout
+        [HttpGet]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Members/MemberInfo/{id}

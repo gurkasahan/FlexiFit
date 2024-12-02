@@ -29,6 +29,5 @@ namespace FlexiFit.Entities.Models
         [Required]
         [Display(Name = "Booking Time")]
         public TimeSpan BookingTime { get; set; }
-
     }
 }
