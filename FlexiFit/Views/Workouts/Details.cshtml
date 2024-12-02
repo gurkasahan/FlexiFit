@@ -4,14 +4,18 @@
     ViewData["Title"] = "Workout Details";
 }
 
-<h2>@Model.ExerciseName</h2>
+<div class="workout-details-page">
+    <div class="workout-details-container">
+        <h2 class="workout-details-title">@Model.ExerciseName</h2>
 
-<div class="workout-detail">
-    <p><strong>Muscle Group:</strong> @Model.MuscleGroup</p>
-    <p><strong>Description:</strong> @Model.Description</p>
-    <p><strong>Repetitions:</strong> @Model.Repetitions</p>
-    @if (!string.IsNullOrEmpty(Model.ImageUrl))
-    {
-        <img src="@Url.Content(@Model.ImageUrl)" alt="@Model.ExerciseName" class="img-fluid" />
-    }
+        <div class="workout-detail animated-container">
+            <p><strong>Muscle Group:</strong> @Model.MuscleGroup</p>
+            <p><strong>Description:</strong> @Model.Description</p>
+            <p><strong>Repetitions:</strong> @Model.Repetitions</p>
+            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+            {
+                <img src="@Url.Content(@Model.ImageUrl)" alt="@Model.ExerciseName" class="img-fluid workout-image" />
+            }
+        </div>
+    </div>
 </div>

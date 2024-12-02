@@ -1014,3 +1014,62 @@ body {
         transform: translateY(0); /* In-place */
     }
 }
+/* Workout Details Page Animation */
+.workout-details-page {
+    background: linear-gradient(135deg, #1a1a1a, #333333); /* Subtle dark theme */
+    color: #ffffff;
+    padding: 20px;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.workout-details-container {
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.1); /* Frosted glass effect */
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    animation: popIn 0.8s ease forwards; /* Add pop-in animation */
+    transform: scale(0.9); /* Start smaller for pop effect */
+    opacity: 0; /* Hidden initially */
+}
+
+.workout-details-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #00ffff;
+    margin-bottom: 15px;
+}
+
+.workout-detail p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: #dcdcdc;
+}
+
+.workout-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Pop-In Animation Keyframes */
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
