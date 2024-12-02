@@ -165,7 +165,7 @@ namespace FlexiFit.Services.Migrations
                             WorkoutId = 1,
                             Description = "Barbell bench press",
                             ExerciseName = "Bench Press",
-                            ImageUrl = "/images/workouts/bench_press.jpg",
+                            ImageUrl = "/images/workouts/bench_press.gif",
                             MuscleGroup = "Chest",
                             Repetitions = "5 reps x 5 sets"
                         },
@@ -174,7 +174,7 @@ namespace FlexiFit.Services.Migrations
                             WorkoutId = 2,
                             Description = "Incline bench dumbbell press",
                             ExerciseName = "Incline Dumbbell Press",
-                            ImageUrl = "/images/workouts/incline_dumbbell_press.jpg",
+                            ImageUrl = "/images/workouts/incline_dumbbell_press.gif",
                             MuscleGroup = "Chest",
                             Repetitions = "3-4 sets x 6-8 reps"
                         },
@@ -183,7 +183,7 @@ namespace FlexiFit.Services.Migrations
                             WorkoutId = 3,
                             Description = "Cable chest flys",
                             ExerciseName = "Cable Flys",
-                            ImageUrl = "/images/workouts/cable_flys.jpg",
+                            ImageUrl = "/images/workouts/cable_flys.gif",
                             MuscleGroup = "Chest",
                             Repetitions = "3 sets x 8-10 reps"
                         },
@@ -192,7 +192,7 @@ namespace FlexiFit.Services.Migrations
                             WorkoutId = 4,
                             Description = "Standard push-ups",
                             ExerciseName = "Push-ups",
-                            ImageUrl = "/images/workouts/push_ups.jpg",
+                            ImageUrl = "/images/workouts/push_ups.gif",
                             MuscleGroup = "Chest",
                             Repetitions = "Till failure"
                         },
@@ -201,7 +201,7 @@ namespace FlexiFit.Services.Migrations
                             WorkoutId = 5,
                             Description = "Tricep cable extensions",
                             ExerciseName = "Cable with Rope Tricep Extensions",
-                            ImageUrl = "/images/workouts/tricep_extensions.jpg",
+                            ImageUrl = "/images/workouts/tricep_extensions.gif",
                             MuscleGroup = "Triceps",
                             Repetitions = "4 sets x 10 reps"
                         },
@@ -210,7 +210,7 @@ namespace FlexiFit.Services.Migrations
                             WorkoutId = 6,
                             Description = "Overhead tricep extensions",
                             ExerciseName = "Dumbbell Overhead Tricep Extension",
-                            ImageUrl = "/images/workouts/overhead_tricep_extension.jpg",
+                            ImageUrl = "/images/workouts/overhead_tricep_extension.gif",
                             MuscleGroup = "Triceps",
                             Repetitions = "3 sets x 10 reps"
                         },
@@ -219,7 +219,7 @@ namespace FlexiFit.Services.Migrations
                             WorkoutId = 7,
                             Description = "Tricep dips",
                             ExerciseName = "Dips",
-                            ImageUrl = "/images/workouts/dips.jpg",
+                            ImageUrl = "/images/workouts/dips.gif",
                             MuscleGroup = "Triceps",
                             Repetitions = "3 sets till failure"
                         },
@@ -228,7 +228,7 @@ namespace FlexiFit.Services.Migrations
                             WorkoutId = 8,
                             Description = "Standard dumbbell bicep curls",
                             ExerciseName = "Bicep Curls with Dumbbell",
-                            ImageUrl = "/images/workouts/bicep_curls.jpg",
+                            ImageUrl = "/images/workouts/bicep_curls.gif",
                             MuscleGroup = "Biceps",
                             Repetitions = "3 sets x 8-10 reps"
                         },
@@ -237,7 +237,7 @@ namespace FlexiFit.Services.Migrations
                             WorkoutId = 9,
                             Description = "Hammer-style dumbbell curls",
                             ExerciseName = "Hammer Curls with Dumbbell",
-                            ImageUrl = "/images/workouts/hammer_curls.jpg",
+                            ImageUrl = "/images/workouts/hammer_curls.gif",
                             MuscleGroup = "Biceps",
                             Repetitions = "3 sets x 10 reps"
                         },
@@ -246,7 +246,7 @@ namespace FlexiFit.Services.Migrations
                             WorkoutId = 10,
                             Description = "Wide-grip lat pull-downs",
                             ExerciseName = "Lat Pull Downs",
-                            ImageUrl = "/images/workouts/lat_pull_downs.jpg",
+                            ImageUrl = "/images/workouts/lat_pull_downs.gif",
                             MuscleGroup = "Back",
                             Repetitions = "4 sets x 8-10 reps"
                         },
@@ -255,7 +255,7 @@ namespace FlexiFit.Services.Migrations
                             WorkoutId = 11,
                             Description = "Cable rows for back",
                             ExerciseName = "Seated Cable Rows",
-                            ImageUrl = "/images/workouts/seated_cable_rows.jpg",
+                            ImageUrl = "/images/workouts/seated_cable_rows.gif",
                             MuscleGroup = "Back",
                             Repetitions = "3-4 sets x 8-10 reps"
                         },
@@ -264,7 +264,7 @@ namespace FlexiFit.Services.Migrations
                             WorkoutId = 12,
                             Description = "Barbell squats",
                             ExerciseName = "Squats",
-                            ImageUrl = "/images/workouts/squats.jpg",
+                            ImageUrl = "/images/workouts/squats.gif",
                             MuscleGroup = "Legs",
                             Repetitions = "3-4 sets x 6-10 reps"
                         },
@@ -273,7 +273,7 @@ namespace FlexiFit.Services.Migrations
                             WorkoutId = 13,
                             Description = "Leg extension machine",
                             ExerciseName = "Leg Extensions",
-                            ImageUrl = "/images/workouts/leg_extensions.jpg",
+                            ImageUrl = "/images/workouts/leg_extensions.gif",
                             MuscleGroup = "Legs",
                             Repetitions = "3-4 sets x 10 reps"
                         },
@@ -282,7 +282,7 @@ namespace FlexiFit.Services.Migrations
                             WorkoutId = 14,
                             Description = "Standard sit-ups",
                             ExerciseName = "Sit-ups",
-                            ImageUrl = "/images/workouts/sit_ups.jpg",
+                            ImageUrl = "/images/workouts/sit_ups.gif",
                             MuscleGroup = "Abs",
                             Repetitions = "2 sets x 20-30 reps"
                         },
@@ -291,7 +291,7 @@ namespace FlexiFit.Services.Migrations
                             WorkoutId = 15,
                             Description = "Hold plank position",
                             ExerciseName = "Planks",
-                            ImageUrl = "/images/workouts/planks.jpg",
+                            ImageUrl = "/images/workouts/planks.gif",
                             MuscleGroup = "Abs",
                             Repetitions = "2 sets x 1 minute"
                         });
