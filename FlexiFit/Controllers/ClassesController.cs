@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿//class controller
+
+using Microsoft.AspNetCore.Mvc;
 using FlexiFit.Entities.Models;
 using FlexiFit.Services.Repositories;
 using System.Linq;
