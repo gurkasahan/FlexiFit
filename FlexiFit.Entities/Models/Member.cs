@@ -37,6 +37,11 @@ namespace FlexiFit.Entities.Models
         public string Email { get; set; }
 
         [Required]
+        [DataType(DataType.Password)]
+        [StringLength(100, MinimumLength = 6, ErrorMessage = "Password must be at least 6 characters.")]
+        public string Password { get; set; }
+
+        [Required]
         [Phone]
         public string PhoneNumber { get; set; }
 

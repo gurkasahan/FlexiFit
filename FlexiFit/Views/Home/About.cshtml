@@ -2,6 +2,10 @@
     ViewData["Title"] = "About";
 }
 
+@{
+    int? memberId = Context.Session.GetInt32("MemberId");
+}
+
 <h2>About FlexiFit</h2>
 <p>
     FlexiFit is a premier gym offering state-of-the-art facilities and expert trainers to help you achieve your fitness goals.

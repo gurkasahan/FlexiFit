@@ -4,6 +4,10 @@
     ViewData["Title"] = "Member Information";
 }
 
+@{
+    int? memberId = Context.Session.GetInt32("MemberId");
+}
+
 <div class="page-background">
     <div class="card-container">
         <h1 class="card-title">Member Information</h1>
@@ -21,4 +25,3 @@
         <a asp-action="ManageMembership" asp-route-id="@Model.MemberId" class="card-button">Manage Membership</a>
     </div>
 </div>
-

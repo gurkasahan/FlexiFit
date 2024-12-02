@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FlexiFit.Services.Migrations
 {
     [DbContext(typeof(FlexiFitDBContext))]
-    [Migration("20241201212757_initialcreate")]
-    partial class initialcreate
+    [Migration("20241202082626_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -121,6 +121,11 @@ namespace FlexiFit.Services.Migrations
 
                     b.Property<int>("MembershipTier")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()

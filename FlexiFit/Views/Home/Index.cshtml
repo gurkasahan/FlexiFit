@@ -2,6 +2,10 @@
     ViewData["Title"] = "Welcome to FlexiFit!";
 }
 
+@{
+    int? memberId = Context.Session.GetInt32("MemberId");
+}
+
 <!-- Hero Section with Animated Gradient and Text Animation -->
 <div class="hero-section">
     <div class="container text-center">
@@ -40,31 +44,12 @@
     <div class="container text-center">
         <h2 class="mb-4" data-aos="fade-up">What the Experts Say</h2>
         <div class="testimonials-wrapper">
+            <!-- Testimonial Boxes -->
             <div class="testimonial-box">
                 <p>"FlexiFit is a game-changer in the fitness world!"</p>
                 <p class="text-muted">- Dr. Sarah Johnson</p>
             </div>
-            <div class="testimonial-box">
-                <p>"Their classes are designed to fit every fitness level."</p>
-                <p class="text-muted">- Coach John Doe</p>
-            </div>
-            <div class="testimonial-box">
-                <p>"A perfect combination of physical and mental well-being."</p>
-                <p class="text-muted">- Wellness Guru Emily Smith</p>
-            </div>
-            <div class="testimonial-box">
-                <p>"FlexiFit motivates me to achieve my goals every day."</p>
-                <p class="text-muted">- Dr. Michael Brown</p>
-            </div>
-            <div class="testimonial-box">
-                <p>"The best trainers and top-notch facilities."</p>
-                <p class="text-muted">- Fitness Expert Lisa White</p>
-            </div>
-            <div class="testimonial-box">
-                <p>"The ultimate destination for holistic wellness."</p>
-                <p class="text-muted">- Health Coach David Green</p>
-            </div>
+            <!-- Add more testimonials as needed -->
         </div>
     </div>
 </div>
-

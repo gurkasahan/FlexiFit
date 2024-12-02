@@ -4,12 +4,17 @@
     ViewData["Title"] = "Manage Membership";
 }
 
+@{
+    int? memberId = Context.Session.GetInt32("MemberId");
+}
+
 <div class="page-background">
     <div class="card-container">
         <h1 class="card-title">Manage Membership</h1>
         <p class="card-description">Update your membership status below.</p>
 
         <form asp-action="ManageMembership" method="post" class="card-form">
+            @Html.AntiForgeryToken()
             <input type="hidden" asp-for="MemberId" />
             <div class="form-group">
                 <label asp-for="IsActive" class="form-label">Status</label>

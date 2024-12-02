@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿// FlexiFit.Services/Repositories/Repository.cs
+using FlexiFit.Entities;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using FlexiFit.Entities;
+using System;
 
 namespace FlexiFit.Services.Repositories
 {
@@ -13,40 +15,76 @@ namespace FlexiFit.Services.Repositories
         public Repository(FlexiFitDBContext context)
         {
             _context = context;
-            _dbSet = _context.Set<T>();
-        }
-
-        public IEnumerable<T> GetAll()
-        {
-            return _dbSet.ToList();
-        }
-
-        public T GetById(int id)
-        {
-            return _dbSet.Find(id);
+            _dbSet = context.Set<T>();
         }
 
         public void Add(T entity)
         {
-            _dbSet.Add(entity);
-            _context.SaveChanges();
-        }
-
-        public void Update(T entity)
-        {
-            _dbSet.Update(entity);
-            _context.SaveChanges();
+            try
+            {
+                _dbSet.Add(entity);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception as needed
+                // For example, you can log the exception or rethrow it
+                throw new Exception("An error occurred while adding the entity to the database.", ex);
+            }
         }
 
         public void Delete(int id)
         {
-            var entity = GetById(id);
-            if (entity != null)
+            try
             {
-                _dbSet.Remove(entity);
+                var entity = _dbSet.Find(id);
+                if (entity != null)
+                {
+                    _dbSet.Remove(entity);
+                    _context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while deleting the entity from the database.", ex);
+            }
+        }
+
+        public IEnumerable<T> GetAll()
+        {
+            try
+            {
+                return _dbSet.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while retrieving entities from the database.", ex);
+            }
+        }
+
+        public T GetById(int id)
+        {
+            try
+            {
+                return _dbSet.Find(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while retrieving the entity from the database.", ex);
+            }
+        }
+
+        public void Update(T entity)
+        {
+            try
+            {
+                _dbSet.Update(entity);
                 _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while updating the entity in the database.", ex);
             }
         }
     }
-
 }

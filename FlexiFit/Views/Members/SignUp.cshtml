@@ -4,6 +4,10 @@
     ViewData["Title"] = "Sign Up";
 }
 
+@{
+    int? memberId = Context.Session.GetInt32("MemberId");
+}
+
 <div class="signup-page">
     <div class="signup-overlay"></div>
     <div class="signup-container">
@@ -13,6 +17,7 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <form asp-action="SignUp" method="post" class="signup-form">
+            @Html.AntiForgeryToken()
             <div class="form-group">
                 <input asp-for="FirstName" class="form-control" placeholder="First Name" />
                 <span asp-validation-for="FirstName" class="text-danger"></span>
@@ -24,6 +29,10 @@
             <div class="form-group">
                 <input asp-for="Email" class="form-control" placeholder="Email" />
                 <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="Password" class="form-control" placeholder="Password" type="password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input asp-for="PhoneNumber" class="form-control" placeholder="Phone Number" />
@@ -60,7 +69,4 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-
 }
-
-

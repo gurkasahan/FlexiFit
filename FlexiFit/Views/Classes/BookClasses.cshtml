@@ -4,12 +4,16 @@
     ViewData["Title"] = "Book a Class";
 }
 
+@{
+    int? memberId = Context.Session.GetInt32("MemberId");
+}
+
 <h2>Book a Class</h2>
 
 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 <form asp-action="BookClasses" method="post">
-    <input type="hidden" asp-for="MemberId" value="@ViewBag.MemberId" />
+    <input type="hidden" name="MemberId" value="@Context.Session.GetInt32("MemberId")" />
     <div class="form-group">
         <label asp-for="ClassId">Class</label>
         <select asp-for="ClassId" class="form-control">

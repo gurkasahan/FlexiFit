@@ -40,7 +40,7 @@ namespace FlexiFit.Controllers
                 if (memberId == null)
                 {
                     // User is not signed in, redirect to SignUp page
-                    return RedirectToAction("SignUp", "Members");
+                    return RedirectToAction("Login", "Members");
                 }
 
                 var bookings = _bookingRepository.GetAll()
@@ -55,11 +55,15 @@ namespace FlexiFit.Controllers
                     })
                     .ToList();
 
+                // Populate ViewBag.Classes with available classes
+                ViewBag.Classes = _classRepository.GetAll()
+                    .Select(c => new { c.ClassId, c.ClassName })
+                    .ToList();
+
                 return View(bookings);
             }
             catch (Exception ex)
             {
-                // Handle exceptions
                 return View("Error", new Models.ErrorViewModel { Message = ex.Message });
             }
         }
@@ -116,6 +120,36 @@ namespace FlexiFit.Controllers
 
                 _bookingRepository.Delete(bookingId);
                 return RedirectToAction("Schedule");
+            }
+            catch (Exception ex)
+            {
+                return View("Error", new Models.ErrorViewModel { Message = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult BookClasses(int classId, DateTime bookingDate, TimeSpan bookingTime)
+        {
+            try
+            {
+                int? memberId = HttpContext.Session.GetInt32("MemberId");
+                if (memberId == null)
+                {
+                    return RedirectToAction("Login", "Members");
+                }
+
+                // Create a new booking for the logged-in user
+                var booking = new Booking
+                {
+                    MemberId = memberId.Value,
+                    ClassId = classId,
+                    BookingDate = bookingDate,
+                    BookingTime = bookingTime
+                };
+
+                _bookingRepository.Add(booking);
+                return RedirectToAction("Schedule"); // Redirect to the My Schedule page
             }
             catch (Exception ex)
             {

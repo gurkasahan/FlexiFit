@@ -2,6 +2,10 @@
     ViewData["Title"] = "Contact";
 }
 
+@{
+    int? memberId = Context.Session.GetInt32("MemberId");
+}
+
 <h2>Contact Us</h2>
 <p>
     We'd love to hear from you! Please reach out with any questions or feedback.

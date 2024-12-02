@@ -14,8 +14,13 @@ builder.Services.AddDbContext<FlexiFitDBContext>(options =>
 // Register repository pattern
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
-// Add session services
-builder.Services.AddSession();
+// session services
+builder.Services.AddSession(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+    options.IdleTimeout = TimeSpan.FromMinutes(20);
+});
 
 var app = builder.Build();
 
@@ -31,7 +36,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-// Enable session before authorization
+// Add session middleware
 app.UseSession();
 
 app.UseAuthorization();

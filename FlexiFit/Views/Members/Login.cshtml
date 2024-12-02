@@ -1,0 +1,34 @@
+﻿@model FlexiFit.Entities.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="login-page">
+    <div class="login-container">
+        <h1 class="login-title">Login</h1>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <form asp-action="Login" method="post" class="login-form">
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <input asp-for="Email" class="form-control" placeholder="Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="Password" class="form-control" placeholder="Password" type="password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <button type="submit" class="login-button">Login</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

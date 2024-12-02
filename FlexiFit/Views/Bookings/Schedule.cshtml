@@ -1,14 +1,16 @@
 ﻿@model IEnumerable<FlexiFit.Entities.Models.Booking>
 
 @{
-    ViewData["Title"] = "Your Class Schedule";
+    ViewData["Title"] = "My Schedule";
+    int? memberId = Context.Session.GetInt32("MemberId");
 }
 
-<h2>Your Class Schedule</h2>
+<h2>My Schedule</h2>
 
 @if (!Model.Any())
 {
     <p>You have not booked any classes yet.</p>
+    <a asp-controller="Classes" asp-action="List" class="btn btn-primary">Browse Classes</a>
 }
 else
 {
@@ -18,7 +20,7 @@ else
                 <th>Class Name</th>
                 <th>Date</th>
                 <th>Time</th>
-                <th></th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -29,10 +31,42 @@ else
                     <td>@booking.BookingDate.ToShortDateString()</td>
                     <td>@booking.BookingTime.ToString(@"hh\:mm")</td>
                     <td>
-                        <a asp-action="Delete" asp-route-id="@booking.BookingId" class="btn btn-danger">Cancel</a>
+                        <form asp-action="DeleteConfirmed" method="post" style="display:inline;">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="bookingId" value="@booking.BookingId" />
+                            <button type="submit" class="btn btn-danger">Cancel</button>
+                        </form>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 }
+
+<h2>Book a New Class</h2>
+<form asp-action="BookClasses" method="post">
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <label for="ClassId">Class</label>
+        <select name="ClassId" class="form-control" required>
+            @foreach (var cls in ViewBag.Classes)
+            {
+                <option value="@cls.ClassId">@cls.ClassName</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="BookingDate">Date</label>
+        <input type="date" name="BookingDate" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="BookingTime">Time</label>
+        <input type="time" name="BookingTime" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Book Class</button>
+</form>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+

@@ -4,12 +4,16 @@
     ViewData["Title"] = "Class Details";
 }
 
+@{
+    int? memberId = Context.Session.GetInt32("MemberId");
+}
+
 <div class="class-details-page">
     <div class="details-container">
         <h1 class="class-title">@Model.ClassName</h1>
         <p class="class-info">
             Take your fitness journey to the next level with our specialized @Model.ClassName sessions.
         </p>
-        <a asp-action="BookClasses" asp-route-memberId="@ViewBag.MemberId" class="btn-class">Book This Class</a>
+
     </div>
 </div>

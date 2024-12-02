@@ -1,10 +1,7 @@
-﻿//class controller
-
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using FlexiFit.Entities.Models;
 using FlexiFit.Services.Repositories;
 using System.Linq;
-using FlexiFit.Models;
 using Microsoft.AspNetCore.Http;
 
 namespace FlexiFit.Controllers
@@ -43,24 +40,16 @@ namespace FlexiFit.Controllers
         [HttpGet]
         public IActionResult BookClasses()
         {
-            try
+            int? memberId = HttpContext.Session.GetInt32("MemberId");
+            if (memberId == null)
             {
-                int? memberId = HttpContext.Session.GetInt32("MemberId");
-                if (memberId == null)
-                {
-                    // User is not signed in, redirect to SignUp page
-                    return RedirectToAction("SignUp", "Members");
-                }
-
-                var classes = _classRepository.GetAll().ToList();
-                ViewBag.Classes = classes;
-
-                return View();
+                return RedirectToAction("Login", "Members");
             }
-            catch (Exception ex)
-            {
-                return View("Error", new ErrorViewModel { Message = ex.Message });
-            }
+
+            var classes = _classRepository.GetAll().ToList();
+            ViewBag.Classes = classes;
+
+            return View(new Booking());
         }
 
         // POST: Classes/BookClasses
@@ -68,44 +57,61 @@ namespace FlexiFit.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult BookClasses(Booking booking)
         {
-            try
+            int? memberId = HttpContext.Session.GetInt32("MemberId");
+            if (memberId == null)
             {
+                return RedirectToAction("Login", "Members");
+            }
 
-                int? memberId = HttpContext.Session.GetInt32("MemberId");
-                if (memberId == null)
+            booking.MemberId = memberId.Value;
+
+            if (ModelState.IsValid)
+            {
+                var cls = _classRepository.GetById(booking.ClassId);
+                if (cls == null)
                 {
-                    return RedirectToAction("SignUp", "Members");
-                }
-
-                booking.MemberId = memberId.Value;
-
-                if (ModelState.IsValid)
-                {
-                    var cls = _classRepository.GetById(booking.ClassId);
-
-                    if (cls == null)
-                    {
-                        ModelState.AddModelError("", "Invalid class.");
-                        ViewBag.Classes = _classRepository.GetAll().ToList();
-                        return View(booking);
-                    }
-
-                    // Add booking and save changes
-                    _bookingRepository.Add(booking);
-                    return RedirectToAction("Schedule", "Bookings");
-                }
-                else
-                {
+                    ModelState.AddModelError("", "Invalid class.");
                     ViewBag.Classes = _classRepository.GetAll().ToList();
                     return View(booking);
                 }
+
+                _bookingRepository.Add(booking);
+                return RedirectToAction("Schedule", "Bookings");
             }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("", "An error occurred while booking the class.");
-                ViewBag.Classes = _classRepository.GetAll().ToList();
-                return View(booking);
-            }
+
+            ViewBag.Classes = _classRepository.GetAll().ToList();
+            return View(booking);
         }
+
+        [HttpGet("{id}")]
+        public IActionResult BookClassFromDetails(int id)
+        {
+            int? memberId = HttpContext.Session.GetInt32("MemberId");
+            if (memberId == null)
+            {
+                return RedirectToAction("Login", "Members");
+            }
+
+            var cls = _classRepository.GetById(id);
+            if (cls == null)
+            {
+                return NotFound("Class not found.");
+            }
+
+            // Create a new booking
+            var booking = new Booking
+            {
+                MemberId = memberId.Value,
+                ClassId = id,
+                BookingDate = DateTime.Now.Date, // Example booking date
+                BookingTime = DateTime.Now.TimeOfDay // Example booking time
+            };
+
+            _bookingRepository.Add(booking);
+
+            // Redirect to the "Schedule" action
+            return RedirectToAction("Schedule", "Bookings");
+        }
+
     }
 }

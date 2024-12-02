@@ -1,6 +1,11 @@
 ﻿@{
     ViewData["Title"] = "Privacy Policy";
 }
+
+@{
+    int? memberId = Context.Session.GetInt32("MemberId");
+}
+
 <h1>@ViewData["Title"]</h1>
 
 <p>Use this page to detail your site's privacy policy.</p>

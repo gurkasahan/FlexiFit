@@ -4,6 +4,10 @@
     ViewData["Title"] = "Available Classes";
 }
 
+@{
+    int? memberId = Context.Session.GetInt32("MemberId");
+}
+
 <div class="classes-page">
     <div class="classes-container">
         <h1 class="classes-title">Available Classes</h1>
@@ -37,5 +41,3 @@
         </div>
     </div>
 </div>
-
-
