@@ -1,5 +1,5 @@
 
-/* General Styles css */
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -390,10 +390,10 @@ body {
     color: #ffffff;
 }
 
-.card-detail span {
-    font-weight: bold;
-    color: #00FFFF;
-}
+    .card-detail span {
+        font-weight: bold;
+        color: #00FFFF;
+    }
 
 /* Form Elements */
 .card-form select,
@@ -410,11 +410,11 @@ body {
     transition: all 0.3s ease;
 }
 
-.card-form select:focus,
-.card-form input:focus {
-    outline: none;
-    box-shadow: 0 0 10px #00FFFF;
-}
+    .card-form select:focus,
+    .card-form input:focus {
+        outline: none;
+        box-shadow: 0 0 10px #00FFFF;
+    }
 
 /* Button Design */
 .card-button {
@@ -433,10 +433,10 @@ body {
     width: 100%;
 }
 
-.card-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(0, 255, 255, 0.6);
-}
+    .card-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(0, 255, 255, 0.6);
+    }
 
 /* Fade-In Animation */
 @keyframes fadeIn {
@@ -444,6 +444,7 @@ body {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -456,7 +457,7 @@ body {
     color: #ffffff;
     margin: 0; /* Remove any margin causing white borders */
     padding: 20px; /* Add padding for content spacing */
-     width: 100vw;
+    width: 100vw;
     height: 100%; /* Ensures full-page coverage */
     min-height: 100vh; /* Fills the viewport */
 
@@ -569,54 +570,15 @@ body {
     margin-bottom: 30px;
 }
 
-
-/* Animation for class cards */
-.class-card {
-    opacity: 0; /* Hidden by default */
-    transform: translateY(50px); /* Start slightly below */
-    animation: popIn 1s ease forwards; /* Pop-in animation */
-}
-
-    .class-card:nth-child(1) {
-        animation-delay: 0.2s; /* Delay for the first card */
-    }
-
-    .class-card:nth-child(2) {
-        animation-delay: 0.4s; /* Delay for the second card */
-    }
-
-    .class-card:nth-child(3) {
-        animation-delay: 0.6s; /* Delay for the third card */
-    }
-
-    .class-card:nth-child(4) {
-        animation-delay: 0.8s; /* Delay for the fourth card */
-    }
-
-/* Animation keyframes */
-@keyframes popIn {
-    0% {
-        opacity: 0;
-        transform: translateY(50px); /* Start below */
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0); /* End in place */
-    }
-}
-
-/* Find Exercise Page Styles */
-/* Find Exercise Page Styles */
+/* Scoped Styling for Find Exercise Page */
 .find-exercise-page {
-    background-color: #1a1a1a; /* Dark gym theme */
+    background-color: #1a1a1a;
     color: #ffffff;
     padding: 20px;
     width: 100vw;
     margin: 0; /* Eliminate any margin causing white borders */
     height: 100%; /* Ensures full-page coverage */
     min-height: 100vh; /* Fills the viewport */
-    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 .find-exercise-container {
@@ -628,88 +590,44 @@ body {
 .find-exercise-title {
     font-size: 3rem;
     font-weight: bold;
-    color: #00ffff; /* Matching accent color */
+    color: #00ffff;
     margin-bottom: 30px;
-    text-shadow: 0px 4px 10px rgba(0, 255, 255, 0.6); /* Glow effect */
 }
 
 /* Muscle Grid */
 .exercise-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px; /* Space between grid items */
-    justify-content: center; /* Center-align the grid */
-    padding: 20px; /* Space around the grid itself */
+    gap: 20px;
 }
 
-/* Muscle Card Styles */
 .muscle-card {
-    background: rgba(255, 255, 255, 0.1); /* Subtle frosted glass effect */
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     padding: 20px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
-    margin: 10px; /* Add spacing around each card */
-    opacity: 0; /* Hidden initially */
-    transform: translateY(50px); /* Start below */
-    animation: staggeredFadeIn 0.8s ease forwards; /* Staggered animation */
 }
 
-    /* Staggered Animation Delays */
-    .muscle-card:nth-child(1) {
-        animation-delay: 0.2s;
+    .muscle-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 30px rgba(0, 255, 255, 0.5);
     }
 
-    .muscle-card:nth-child(2) {
-        animation-delay: 0.4s;
-    }
-
-    .muscle-card:nth-child(3) {
-        animation-delay: 0.6s;
-    }
-
-    .muscle-card:nth-child(4) {
-        animation-delay: 0.8s;
-    }
-
-    .muscle-card:nth-child(5) {
-        animation-delay: 1s;
-    }
-
-    .muscle-card:nth-child(6) {
-        animation-delay: 1.2s;
-    }
-
-/* Keyframes for Staggered Fade-In */
-@keyframes staggeredFadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(50px); /* Start below */
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0); /* Settle in place */
-    }
-}
-
-/* Icon Styling */
 .muscle-icon {
     font-size: 3rem;
-    color: #00ffff; /* Matching teal for icons */
+    color: #00ffff;
     margin-bottom: 15px;
-    text-shadow: 0px 4px 10px rgba(0, 255, 255, 0.6); /* Glow for icons */
 }
+
+
 
 .muscle-name {
     font-size: 1.5rem;
     margin-bottom: 15px;
-    font-weight: bold;
-    text-shadow: 0px 4px 10px rgba(0, 255, 255, 0.4); /* Subtle glow for text */
 }
 
-/* Button Styling */
 .btn-muscle {
     background: linear-gradient(135deg, #00ffff, #007bff);
     color: #ffffff;
@@ -727,8 +645,7 @@ body {
     }
 
 
-
-/* Scoped Styling for Workout Details Pages*/
+/* Scoped Styling for Workout Details Page */
 .workout-details-page {
     background-color: #1a1a1a;
     color: #ffffff;
@@ -780,7 +697,6 @@ body {
         border-radius: 10px;
         margin-top: 10px;
     }
-
 /* Shared Styling for About and Contact Pages */
 .page-container {
     background-color: #1a1a1a; /* Dark background for consistency */
@@ -963,113 +879,6 @@ body {
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-/* Classes Page with Staggered Animation */
-.classes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-}
-
-.class-card {
-    background: rgba(255, 255, 255, 0.1); /* Frosted glass effect */
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    opacity: 0; /* Start hidden */
-    transform: translateY(50px); /* Start below the viewport */
-    animation: staggeredFadeIn 0.8s ease forwards; /* Animation for fade-in */
-}
-
-    /* Staggered Animation Delays for Each Box */
-    .class-card:nth-child(1) {
-        animation-delay: 0.2s;
-    }
-
-    .class-card:nth-child(2) {
-        animation-delay: 0.4s;
-    }
-
-    .class-card:nth-child(3) {
-        animation-delay: 0.6s;
-    }
-
-    .class-card:nth-child(4) {
-        animation-delay: 0.8s;
-    }
-
-/* Keyframes for Fade-In Animation */
-@keyframes staggeredFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(50px); /* Below viewport */
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0); /* In-place */
-    }
-}
-/* Workout Details Page Animation */
-.workout-details-page {
-    background: linear-gradient(135deg, #1a1a1a, #333333); /* Subtle dark theme */
-    color: #ffffff;
-    padding: 20px;
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.workout-details-container {
-    max-width: 800px;
-    background: rgba(255, 255, 255, 0.1); /* Frosted glass effect */
-    backdrop-filter: blur(10px);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    animation: popIn 0.8s ease forwards; /* Add pop-in animation */
-    transform: scale(0.9); /* Start smaller for pop effect */
-    opacity: 0; /* Hidden initially */
-}
-
-.workout-details-title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #00ffff;
-    margin-bottom: 15px;
-}
-
-.workout-detail p {
-    font-size: 1.2rem;
-    margin: 10px 0;
-    color: #dcdcdc;
-}
-
-.workout-image {
-    max-width: 100%;
-    height: auto;
-    margin-top: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-}
-
-/* Pop-In Animation Keyframes */
-@keyframes popIn {
-    0% {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-
-    100% {
-        opacity: 1;
-        transform: scale(1);
     }
 }
 
