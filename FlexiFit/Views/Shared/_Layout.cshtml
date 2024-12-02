@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
+    @{
+        int? memberId = Context.Session.GetInt32("MemberId");
+    }
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" asp-controller="Home" asp-action="Index">FlexiFit</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -16,11 +19,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
+                <!-- Common links for all users -->
                 <li class="nav-item">
                     <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="Members" asp-action="SignUp">Sign Up</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" asp-controller="Classes" asp-action="List">Classes</a>
@@ -34,6 +35,27 @@
                 <li class="nav-item">
                     <a class="nav-link" asp-controller="Home" asp-action="Contact">Contact</a>
                 </li>
+
+                @if (memberId != null)
+                {
+                    <!-- Links for logged-in users -->
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Bookings" asp-action="Schedule">My Schedule</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Members" asp-action="MemberInfo" asp-route-id="@memberId">My Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Members" asp-action="Logout">Logout</a>
+                    </li>
+                }
+                else
+                {
+                    <!-- Links for guests -->
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Members" asp-action="SignUp">Sign Up</a>
+                    </li>
+                }
             </ul>
         </div>
     </nav>

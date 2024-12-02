@@ -14,7 +14,7 @@
 </div>
 
 <form asp-action="DeleteConfirmed" method="post">
-    <input type="hidden" asp-for="BookingId" />
+    <input type="hidden" name="bookingId" value="@Model.BookingId" />
     <button type="submit" class="btn btn-danger">Cancel Booking</button>
-    <a asp-action="Schedule" asp-route-memberId="@Model.MemberId" class="btn btn-secondary">Back to Schedule</a>
+    <a asp-action="Schedule" class="btn btn-secondary">Back to Schedule</a>
 </form>

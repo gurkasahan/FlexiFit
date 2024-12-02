@@ -54,7 +54,8 @@ namespace FlexiFit.Controllers
             }
 
             ViewBag.Classes = _classRepository.GetAll().ToList();
-            return View(booking);
+            // After successfully adding a booking
+            return RedirectToAction("Schedule", "Bookings");
         }
     }
 }

@@ -13,7 +13,7 @@ builder.Services.AddDbContext<FlexiFitDBContext>(options =>
 
 // Register repository pattern
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-
+builder.Services.AddSession();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline
@@ -27,6 +27,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseSession();
 
 app.UseAuthorization();
 
