@@ -1,6 +1,8 @@
 # FlexiFit - Gym Membership Management System
 
-**FlexiFit** is a full-stack web application designed to manage gym memberships, including member registration, membership plans, payments, and administrative features. This project was developed to strengthen my understanding of building scalable, structured web applications using **ASP.NET Core MVC** and **Entity Framework Core**. -> Check Master Branch for Code <-
+**FlexiFit** is a full-stack web application designed to manage gym memberships, including member registration, membership plans, payments, and administrative features. This project was developed to strengthen my understanding of building scalable, structured web applications using **ASP.NET Core MVC** and **Entity Framework Core**. 
+
+-> Check Master Branch for Code <-
 
 ## 🧠 Purpose
 
